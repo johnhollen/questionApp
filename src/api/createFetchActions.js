@@ -5,12 +5,25 @@ function generateFetchActions(options) {
     } = options;
 
     const dispatchRequestKey = () => ({type: requestKey});
-    const JSONtransform = response => response.json();
+    const dispatchReceiveKey = data => ({
+        type: receiveKey,
+        payload: data
+    });
+    
+    const JSONtransform = response => {
+        return response.json();
+    }
 
     return params => {
         return dispatch => {
-            dispatchRequestKey();
-            return 
+            dispatch(dispatchRequestKey());
+            return apiCall().then(JSONtransform)
+                    .then(data => dispatch(dispatchReceiveKey(data)))
+                    .catch(err => {
+                        console.log(err);
+                    });
         };
     };
 }
+
+export default generateFetchActions;

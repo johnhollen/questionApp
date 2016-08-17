@@ -1,32 +1,18 @@
 import React from 'react';
 import {View, Text, StatusBar, Navigator, StyleSheet, TouchableHighlight} from 'react-native';
-
-import Hello from './Hello';
-import World from './World';
-import QuestionView from './question/Question';
+import RandomQuestionView from './question/RandomQuestionView';
 
 const routes = [
-    {title: 'Bra Idé', index: 0},
-    {title: 'World', index: 1}
+    {title: 'questionApp', index: 0}
 ];
 
 const NavigationBarContent = {
     LeftButton(route, navigator, index, navState) {
-        if (index === 0) return null;
-        return (
-            <TouchableHighlight onPress={() => navigator.pop()}>
-                <Text>Hello</Text>
-            </TouchableHighlight>
-        );
+        return null;
     },
 
     RightButton(route, navigator, index, navState) {
-        if (index === 1) return null;
-        return (
-            <TouchableHighlight onPress={() => navigator.push(routes[1])}>
-                <Text>World</Text>
-            </TouchableHighlight>
-        );
+        return null;
     },
 
     Title(route, navigator, index, navState) {
@@ -37,12 +23,11 @@ const NavigationBarContent = {
 };
 
 const renderScene = (route, navigator) => {
-    console.log(route, navigator);
     switch (route.index) {
         case 0: 
-            return (<QuestionView />);
-        case 1: 
-            return (<World />);
+            return <RandomQuestionView />;
+        default:
+            return <RandomQuestionView />
     }
 };
 
