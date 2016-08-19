@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 import {
     View, Text,
     TouchableHighlight, StyleSheet
@@ -23,9 +23,20 @@ const style = StyleSheet.create({
 });
 
 const RandomQuestionView = React.createClass({
+    propTypes: {
+        randomQuestion: PropTypes.object,
+        randomQuestionIsLoading: PropTypes.bool
+    },
+
     componentWillMount() {
         const {actions} = this.props;
         actions.fetchRandomQuestion();
+    },
+
+    renderQuestion() {
+        return (
+            <Text style={style.text}>QuestionView</Text>
+        );
     },
 
     render() {
@@ -33,7 +44,7 @@ const RandomQuestionView = React.createClass({
         return (
             <View style={style.container}>
                 <LoadingIndicator loading={randomQuestionIsLoading} size='large' color='#ffffff'>
-                    <Text style={style.text}>QuestionView</Text>
+                    {this.renderQuestion()}          
                 </LoadingIndicator>
             </View>
         );
