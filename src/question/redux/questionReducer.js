@@ -2,16 +2,16 @@ import {combineReducers} from 'redux';
 import {REQUEST_RANDOM_QUESTION, RECEIVE_RANDOM_QUESTION} from '../../constants'; 
 
 const INITIAL_LOADING_STATE = {
-    loading: false
+    randomQuestionIsLoading: true
 };
 
 function loadingStatus(state = INITIAL_LOADING_STATE, action) {
     const {type} = action;
     switch(type) {
         case REQUEST_RANDOM_QUESTION:
-            return {loading: true};
+            return {randomQuestionIsLoading: true};
         case RECEIVE_RANDOM_QUESTION:
-            return {loading: false};
+            return {randomQuestionIsLoading: false};
         default:
             return state;
     }

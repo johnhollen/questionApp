@@ -1,24 +1,13 @@
 import React from 'react';
-import {View, Text, TouchableHighlight, StyleSheet} from 'react-native';
+import {
+    View, Text,
+    TouchableHighlight, StyleSheet
+} from 'react-native';
 import {connect} from 'react-redux';
+import LoadingIndicator from '../sharedComponents/LoadingIndicator';
 import {bindActionCreators} from 'redux';
 import {fetchRandomQuestion} from './redux/questionActions';
 import {randomQuestionSelectors} from './redux/questionSelectors';
-
-const RandomQuestionView = React.createClass({
-    componentWillMount() {
-        const {actions} = this.props;
-        actions.fetchRandomQuestion();
-    },
-
-    render() {
-        return (
-            <View style={style.container}>
-                <Text style={style.text}>QuestionView</Text>
-            </View>
-        );
-    }
-});
 
 const style = StyleSheet.create({
     container: {
@@ -28,17 +17,36 @@ const style = StyleSheet.create({
         backgroundColor: '#e34373'
     },
     text: {
-        color: '#ffffff'
+        color: '#ffffff',
+        fontFamily: 'System'
+    }
+});
+
+const RandomQuestionView = React.createClass({
+    componentWillMount() {
+        const {actions} = this.props;
+        actions.fetchRandomQuestion();
+    },
+
+    render() {
+        const {randomQuestionIsLoading} = this.props;
+        return (
+            <View style={style.container}>
+                <LoadingIndicator loading={randomQuestionIsLoading} size='large' color='#ffffff'>
+                    <Text style={style.text}>QuestionView</Text>
+                </LoadingIndicator>
+            </View>
+        );
     }
 });
 
 function mapStateToProps(state) {
     const randomQuestion = randomQuestionSelectors.data(state);
-    const loading = randomQuestionSelectors.loading(state);
+    const randomQuestionIsLoading = randomQuestionSelectors.randomQuestionIsLoading(state);
 
     return {
         randomQuestion,
-        loading
+        randomQuestionIsLoading
     };
 }
 
