@@ -24,6 +24,7 @@ const style = StyleSheet.create({
 
 const RandomQuestionView = React.createClass({
     propTypes: {
+        actions: PropTypes.object,
         randomQuestion: PropTypes.object,
         randomQuestionIsLoading: PropTypes.bool
     },
