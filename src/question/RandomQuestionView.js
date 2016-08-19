@@ -9,7 +9,7 @@ import {bindActionCreators} from 'redux';
 import {fetchRandomQuestion} from './redux/questionActions';
 import {randomQuestionSelectors} from './redux/questionSelectors';
 
-const style = StyleSheet.create({
+const styles = StyleSheet.create({
     container: {
         flex: 1,
         alignItems: 'center',
@@ -36,14 +36,14 @@ const RandomQuestionView = React.createClass({
 
     renderQuestion() {
         return (
-            <Text style={style.text}>QuestionView</Text>
+            <Text style={styles.text}>QuestionView</Text>
         );
     },
 
     render() {
         const {randomQuestionIsLoading} = this.props;
         return (
-            <View style={style.container}>
+            <View style={styles.container}>
                 <LoadingIndicator loading={randomQuestionIsLoading} size='large' color='#ffffff'>
                     {this.renderQuestion()}          
                 </LoadingIndicator>
