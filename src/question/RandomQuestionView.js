@@ -11,7 +11,6 @@ import {randomQuestionSelectors} from './redux/questionSelectors';
 import styles from './RandomQuestionView.styles';
 import {endsWith, isEmpty} from 'lodash';
 
-
 const RandomQuestionView = React.createClass({
     propTypes: {
         actions: PropTypes.object,
