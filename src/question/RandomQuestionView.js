@@ -1,26 +1,16 @@
 import React, {PropTypes} from 'react';
 import {
     View, Text,
-    TouchableHighlight, StyleSheet
+    TouchableOpacity
 } from 'react-native';
 import {connect} from 'react-redux';
 import LoadingIndicator from '../sharedComponents/LoadingIndicator';
 import {bindActionCreators} from 'redux';
 import {fetchRandomQuestion} from './redux/questionActions';
 import {randomQuestionSelectors} from './redux/questionSelectors';
+import styles from './RandomQuestionView.styles';
+import {endsWith, isEmpty} from 'lodash';
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
-        backgroundColor: '#e34373'
-    },
-    text: {
-        color: '#ffffff',
-        fontFamily: 'System'
-    }
-});
 
 const RandomQuestionView = React.createClass({
     propTypes: {
@@ -35,8 +25,29 @@ const RandomQuestionView = React.createClass({
     },
 
     renderQuestion() {
+        const {randomQuestion} = this.props;
+        if (isEmpty(randomQuestion)) return null;
+
+        const questionText = endsWith(randomQuestion.text, '?') ? randomQuestion.text : `${randomQuestion.text}?`;
+        const answers = randomQuestion.options.map((answer, index) => {
+            const buttonStyle = index === 0 ? [styles.answerButton, styles.leftAnswer] : [styles.answerButton, styles.rightAnswer];
+            return (
+                <TouchableOpacity onPress={() => console.log(answer.text)} key={answer._id}>
+                    <View style={buttonStyle}> 
+                        <Text style={styles.answerButtonText}>{answer.text}</Text>
+                    </View>
+                </TouchableOpacity>
+            );
+        });
+
         return (
-            <Text style={styles.text}>QuestionView</Text>
+            <View>
+                <Text style={styles.mainQuestion}>{questionText}</Text>
+                <View style={styles.separator} />
+                <View style={styles.answerContainer}>
+                    {answers}
+                </View>
+            </View>
         );
     },
 
