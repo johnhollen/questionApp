@@ -38,8 +38,7 @@ const addQuestionViewStyles = {
             width: 0,
             height: 0
         },
-        backgroundColor: '#e34373',
-        marginTop: 30
+        backgroundColor: '#e34373'
     },
     addButtonText: {
         fontFamily: 'System',
@@ -47,6 +46,9 @@ const addQuestionViewStyles = {
         color: '#ffffff',
         fontSize: 20,
         textAlign: 'center'
+    },
+    buttonContainer: {
+        marginTop: 30
     }
 };
 
