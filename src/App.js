@@ -5,25 +5,50 @@ import {
     StyleSheet, TouchableOpacity
 } from 'react-native';
 import RandomQuestionView from './question/RandomQuestionView';
-import navBarStyles from './NavBar.styles';
+import AddQuestionView from './question/AddQuestionView';
+import navBarStyles from './sharedComponents/Navbar.styles';
 
 const routes = [
-    {title: 'Fråga', index: 'randomQuestionView'}
+    {title: 'Fråga', index: 'randomQuestionView'},
+    {title: 'Skapa Fråga', index: 'addQuestionView'}
 ];
 
 const NavigationBarContent = {
     LeftButton(route, navigator, index, navState) {
-        return null;
+        if (route.index === 'randomQuestionView') {
+            return (
+                <TouchableOpacity onPress={() => navigator.pop()}>
+                    <View style={navBarStyles.navBarButton}>
+                        <Text style={navBarStyles.navBarButtonText}>{'Mina Frågor'}</Text>
+                    </View>
+                </TouchableOpacity>
+            );
+        }
+        
+        if (route.index === 'addQuestionView') {
+            return (
+                <TouchableOpacity onPress={() => navigator.pop()}>
+                    <View style={navBarStyles.navBarButton}>
+                        <Text style={navBarStyles.navBarButtonText}>{'Avbryt'}</Text>
+                    </View>
+                </TouchableOpacity>
+            );
+        }
+
+        return null;        
     },
 
     RightButton(route, navigator, index, navState) {
-        return (
-            <TouchableOpacity onPress={() => console.log('Button Clicked')}>
-                <View style={navBarStyles.navBarButton}>
-                    <Text style={navBarStyles.navBarRightButtonText}>+</Text>
-                </View>
-            </TouchableOpacity>
-        )
+        if (route.index === 'randomQuestionView') {
+            return (
+                <TouchableOpacity onPress={() => navigator.push(routes[1])}>
+                    <View style={navBarStyles.navBarButton}>
+                        <Text style={navBarStyles.navBarButtonText}>{'Skapa'}</Text>
+                    </View>
+                </TouchableOpacity>
+            );
+        }
+        return null;        
     },
 
     Title(route, navigator, index, navState) {
@@ -37,23 +62,33 @@ const renderScene = (route, navigator) => {
     switch (route.index) {
         case 'randomQuestionView': 
             return <RandomQuestionView />;
+        case 'addQuestionView':
+            return <AddQuestionView navigator={navigator} />;
         default:
             return <RandomQuestionView />
     }
 };
+
+const configureScene = (route, routeStack) => {
+    switch (route.index) {
+        default:
+            return Navigator.SceneConfigs.PushFromRight;
+    }
+}
 
 // App Entry
 const App = React.createClass({
     render() {
         return (
             <Navigator initialRoute={routes[0]}
-                 navigationBar={
-                   <Navigator.NavigationBar routeMapper={NavigationBarContent}
-                                            style={navBarStyles.navBar}/>
-                 }
-                 renderScene={renderScene}
-            />
-        )
+                       initialRouteStack={routes}
+                       navigationBar={
+                            <Navigator.NavigationBar routeMapper={NavigationBarContent}
+                                                     style={navBarStyles.navBar} />
+                        }
+                        renderScene={renderScene}
+                        configureScene={configureScene} />
+        );
     }
 });
 

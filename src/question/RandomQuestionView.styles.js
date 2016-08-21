@@ -52,13 +52,15 @@ const randomQuestionStyles = {
         shadowOffset: {
             width: 0,
             height: 0
-        }
+        },
+        minWidth: 120
     },
     answerButtonText: {
         fontFamily: 'System',
         fontWeight: 'bold',
         color: '#ffffff',
-        fontSize: 20
+        fontSize: 20,
+        textAlign: 'center'
     },
     leftAnswer: {
         backgroundColor: 'mediumslateblue'

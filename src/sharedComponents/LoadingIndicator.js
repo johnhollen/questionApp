@@ -10,7 +10,7 @@ const LoadingIndicator = React.createClass({
 
     render() {
         const {loading, size, color, children} = this.props;
-        if (loading) return <ActivityIndicator size={size} color={color} />;
+        if (loading) return <ActivityIndicator animating={loading} size={size} color={color} />;
 
         return children;
     }

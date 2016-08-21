@@ -4,7 +4,7 @@ const navBarStyles = {
   navBar: {
     backgroundColor: '#ffffff',
     opacity: 0.9,
-    shadowColor: '#888',
+    shadowColor: '#444',
     shadowOpacity: 0.6,
     shadowRadius: 3,
     shadowOffset: {
@@ -19,8 +19,8 @@ const navBarStyles = {
     color: '#444444',
     fontFamily: 'System'
   },
-  navBarRightButtonText: {
-      fontSize: 20,
+  navBarButtonText: {
+      fontSize: 15,
       fontWeight: 'bold',
       fontFamily: 'System',
       marginBottom: 3,
@@ -31,10 +31,13 @@ const navBarStyles = {
       backgroundColor: '#f5f5f5',
       marginLeft: 15,
       marginRight: 15,
+      marginTop: 2,
       alignItems: 'center',
       justifyContent: 'center',
-      height: 40,
-      width: 40,
+      paddingTop: 5,
+      paddingBottom: 5,
+      paddingLeft: 12,
+      paddingRight: 12,
       borderStyle: 'solid',
       borderColor: '#eeeeee',
       borderWidth: 1
