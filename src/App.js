@@ -15,27 +15,26 @@ const routes = [
 
 const NavigationBarContent = {
     LeftButton(route, navigator, index, navState) {
-        if (route.index === 'randomQuestionView') {
-            return (
-                <TouchableOpacity onPress={() => navigator.pop()}>
-                    <View style={navBarStyles.navBarButton}>
-                        <Text style={navBarStyles.navBarButtonText}>{'Mina Frågor'}</Text>
-                    </View>
-                </TouchableOpacity>
-            );
-        }
-        
-        if (route.index === 'addQuestionView') {
-            return (
-                <TouchableOpacity onPress={() => navigator.pop()}>
-                    <View style={navBarStyles.navBarButton}>
-                        <Text style={navBarStyles.navBarButtonText}>{'Avbryt'}</Text>
-                    </View>
-                </TouchableOpacity>
-            );
-        }
-
-        return null;        
+        switch (route.index) {
+            case 'randomQuestionView':
+                return (
+                    <TouchableOpacity onPress={() => navigator.pop()}>
+                        <View style={navBarStyles.navBarButton}>
+                            <Text style={navBarStyles.navBarButtonText}>Mina Frågor</Text>
+                        </View>
+                    </TouchableOpacity>
+                );
+            case 'addQuestionView':
+                return (
+                    <TouchableOpacity onPress={() => navigator.pop()}>
+                        <View style={navBarStyles.navBarButton}>
+                            <Text style={navBarStyles.navBarButtonText}>Avbryt</Text>
+                        </View>
+                    </TouchableOpacity>
+                );
+            default:
+                return null;
+        }       
     },
 
     RightButton(route, navigator, index, navState) {

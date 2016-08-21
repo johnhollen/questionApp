@@ -2,7 +2,7 @@ import {combineReducers} from 'redux';
 import {REQUEST_RANDOM_QUESTION, RECEIVE_RANDOM_QUESTION} from '../../constants'; 
 
 const INITIAL_LOADING_STATE = {
-    randomQuestionIsLoading: false
+    randomQuestionIsLoading: true
 };
 
 function loadingStatus(state = INITIAL_LOADING_STATE, action) {

@@ -37,9 +37,10 @@ const randomQuestionStyles = {
     },
     answerContainer: {
         justifyContent: 'space-between',
-        alignItems: 'center',
-        flexDirection: 'row',
-        padding: 5
+        alignItems: 'stretch',
+        flexDirection: 'column',
+        padding: 5,
+        height: 130
     },
     answerButton: {
         borderColor: '#ffffff',
@@ -52,8 +53,7 @@ const randomQuestionStyles = {
         shadowOffset: {
             width: 0,
             height: 0
-        },
-        minWidth: 120
+        }
     },
     answerButtonText: {
         fontFamily: 'System',
