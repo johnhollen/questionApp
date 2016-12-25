@@ -4,8 +4,8 @@ import {
     StatusBar, Navigator,
     StyleSheet, TouchableOpacity
 } from 'react-native';
-import RandomQuestionView from './question/RandomQuestionView';
-import AddQuestionView from './question/AddQuestionView';
+import RandomQuestionView from './question/RandomQuestion';
+import AddQuestionView from './question/AddQuestion';
 import navBarStyles from './sharedComponents/Navbar.styles';
 
 const routes = [

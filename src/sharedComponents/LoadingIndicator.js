@@ -1,19 +1,17 @@
 import React, {PropTypes} from 'react';
 import {ActivityIndicator} from 'react-native';
 
-const LoadingIndicator = React.createClass({
-    propTypes: {
-        loading: PropTypes.bool,
-        size: PropTypes.string,
-        color: PropTypes.string
-    },
+const LoadingIndicator = (props) => {
+    const {loading, size, color, children} = props;
+    if (loading) return <ActivityIndicator animating={loading} size={size} color={color} />;
 
-    render() {
-        const {loading, size, color, children} = this.props;
-        if (loading) return <ActivityIndicator animating={loading} size={size} color={color} />;
+    return children;
+};
 
-        return children;
-    }
-});
+LoadingIndicator.propTypes = {
+    loading: PropTypes.bool,
+    size: PropTypes.string,
+    color: PropTypes.string
+};
 
 export default LoadingIndicator;

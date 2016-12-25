@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import {AppRegistry} from 'react-native';
 import {Provider} from 'react-redux';
-import {createStore, combineReducers, applyMiddleware} from 'redux';
+import {createStore, applyMiddleware} from 'redux';
 import thunk from 'redux-thunk';
-import appStore from './src/configureStore';
+import appStore from './src/reducers';
 
 import App from './src/App';
 

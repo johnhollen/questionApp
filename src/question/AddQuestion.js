@@ -1,14 +1,13 @@
-import React, {PropTypes} from 'react';
+import React, {PropTypes, Component} from 'react';
 import {
     View, Text,
     TouchableOpacity
 } from 'react-native';
 import Input from '../sharedComponents/Input';
-import styles from './AddQuestionView.styles';
+import styles from './AddQuestion.styles.js';
 
-const AddQuestionView = React.createClass({
+class AddQuestion extends Component {
     render() {
-        const Navigator = this.props.navigator;
         return (
             <View style={styles.container}>
                 <Text style={styles.title}>Ställ din fråga</Text>
@@ -26,6 +25,6 @@ const AddQuestionView = React.createClass({
             </View>
         );
     }
-});
+};
 
-export default AddQuestionView;
+export default AddQuestion;

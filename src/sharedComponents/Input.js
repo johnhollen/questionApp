@@ -1,20 +1,12 @@
-import React, {PropTypes} from 'react';
+import React, {PropTypes, Component} from 'react';
 import {TextInput, View} from 'react-native';
 import {noop} from 'lodash';
 import styles from './Input.styles';
 
-const Input = React.createClass({
-    propTypes: {
-        placeHolder: PropTypes.string,
-        onChange: PropTypes.func
-    },
-
-    getDefaultProps() {
-        return {
-            placeHolder: '',
-            onChange: noop
-        }
-    },
+class Input extends Component {
+    constructor(props) {
+        super(props);
+    }
 
     render() {
         const {placeHolder, onChange} = this.props;
@@ -29,6 +21,11 @@ const Input = React.createClass({
             </View>
         );        
     }
-});
+};
+
+Input.propTypes = {
+    placeHolder: PropTypes.string,
+    onChange: PropTypes.func
+};
 
 export default Input;

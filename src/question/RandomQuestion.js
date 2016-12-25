@@ -1,4 +1,4 @@
-import React, {PropTypes} from 'react';
+import React, {PropTypes, Component} from 'react';
 import {
     View, Text,
     TouchableOpacity
@@ -8,20 +8,18 @@ import LoadingIndicator from '../sharedComponents/LoadingIndicator';
 import {bindActionCreators} from 'redux';
 import {fetchRandomQuestion} from './redux/questionActions';
 import {randomQuestionSelectors} from './redux/questionSelectors';
-import styles from './RandomQuestionView.styles';
+import styles from './RandomQuestion.styles.js';
 import {endsWith, isEmpty} from 'lodash';
 
-const RandomQuestionView = React.createClass({
-    propTypes: {
-        actions: PropTypes.object,
-        randomQuestion: PropTypes.object,
-        randomQuestionIsLoading: PropTypes.bool
-    },
+class RandomQuestion extends Component {
+    constructor(props) {
+        super(props);
+    }
 
     componentWillMount() {
         const {actions} = this.props;
         actions.fetchRandomQuestion();
-    },
+    }
 
     renderQuestion() {
         const {randomQuestion} = this.props;
@@ -48,7 +46,7 @@ const RandomQuestionView = React.createClass({
                 </View>
             </View>
         );
-    },
+    }
 
     render() {
         const {randomQuestionIsLoading} = this.props;
@@ -60,7 +58,13 @@ const RandomQuestionView = React.createClass({
             </View>
         );
     }
-});
+}
+
+RandomQuestion.propTypes = {
+    actions: PropTypes.object,
+    randomQuestion: PropTypes.object,
+    randomQuestionIsLoading: PropTypes.bool
+};
 
 function mapStateToProps(state) {
     const randomQuestion = randomQuestionSelectors.data(state);
@@ -80,4 +84,4 @@ function mapDispatchToProps(dispatch) {
     };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(RandomQuestionView);
+export default connect(mapStateToProps, mapDispatchToProps)(RandomQuestion);
