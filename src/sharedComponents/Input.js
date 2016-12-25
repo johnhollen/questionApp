@@ -12,12 +12,14 @@ class Input extends Component {
         const {placeHolder, onChange} = this.props;
         return (
             <View style={styles.wrapper}>
-                <TextInput style={styles.input}
-                           placeholder={placeHolder}
-                           onChangeText={(text) => {console.log(text)}}
-                           keyboardAppearance='dark' 
-                           returnKeyType='done' 
-                           placeholderTextColor='#f3f3f3' />
+                <TextInput
+                    style={styles.input}
+                    placeholder={placeHolder}
+                    onChangeText={(text) => {console.log(text)}}
+                    keyboardAppearance='dark'
+                    returnKeyType='done'
+                    placeholderTextColor='#f3f3f3'
+                />
             </View>
         );        
     }

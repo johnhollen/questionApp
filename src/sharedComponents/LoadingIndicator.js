@@ -3,7 +3,11 @@ import {ActivityIndicator} from 'react-native';
 
 const LoadingIndicator = (props) => {
     const {loading, size, color, children} = props;
-    if (loading) return <ActivityIndicator animating={loading} size={size} color={color} />;
+    if (loading) {
+        return (
+            <ActivityIndicator animating={loading} size={size} color={color} />
+        );
+    }
 
     return children;
 };

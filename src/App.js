@@ -79,14 +79,17 @@ const configureScene = (route, routeStack) => {
 const App = React.createClass({
     render() {
         return (
-            <Navigator initialRoute={routes[0]}
-                       initialRouteStack={routes}
-                       navigationBar={
-                            <Navigator.NavigationBar routeMapper={NavigationBarContent}
-                                                     style={navBarStyles.navBar} />
-                        }
-                        renderScene={renderScene}
-                        configureScene={configureScene} />
+            <Navigator
+                initialRoute={routes[0]}
+                initialRouteStack={routes}
+                navigationBar={
+                    <Navigator.NavigationBar
+                        routeMapper={NavigationBarContent}
+                        style={navBarStyles.navBar} />
+                }
+                renderScene={renderScene}
+                configureScene={configureScene}
+            />
         );
     }
 });
