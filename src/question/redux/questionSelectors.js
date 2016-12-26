@@ -1,4 +1,3 @@
-export const randomQuestionSelectors = {
-    data: state => state.randomQuestion.data,
-    randomQuestionIsLoading: state => state.randomQuestion.loadingStatus.randomQuestionIsLoading
-};
+export const getRandomQuestion = (state) => state.randomQuestion.data;
+export const randomQuestionIsLoading = (state) =>
+    state.randomQuestion.loadingStatus.randomQuestionIsLoading;

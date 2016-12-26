@@ -7,7 +7,10 @@ import {connect} from 'react-redux';
 import LoadingIndicator from '../sharedComponents/LoadingIndicator';
 import {bindActionCreators} from 'redux';
 import {fetchRandomQuestion} from './redux/questionActions';
-import {randomQuestionSelectors} from './redux/questionSelectors';
+import {
+    getRandomQuestion,
+    randomQuestionIsLoading
+} from './redux/questionSelectors';
 import styles from './RandomQuestion.styles.js';
 import {endsWith, isEmpty} from 'lodash';
 
@@ -17,8 +20,8 @@ class RandomQuestion extends Component {
     }
 
     componentWillMount() {
-        const {actions} = this.props;
-        actions.fetchRandomQuestion();
+        const {onFetchRandomQuestion} = this.props;
+        onFetchRandomQuestion();
     }
 
     renderQuestion() {
@@ -61,27 +64,18 @@ class RandomQuestion extends Component {
 }
 
 RandomQuestion.propTypes = {
-    actions: PropTypes.object,
+    onFetchRandomQuestion: PropTypes.func,
     randomQuestion: PropTypes.object,
     randomQuestionIsLoading: PropTypes.bool
 };
 
-function mapStateToProps(state) {
-    const randomQuestion = randomQuestionSelectors.data(state);
-    const randomQuestionIsLoading = randomQuestionSelectors.randomQuestionIsLoading(state);
+const mapStateToProps = (state) => ({
+    randomQuestion: getRandomQuestion(state),
+    randomQuestionIsLoading: randomQuestionIsLoading(state)
+});
 
-    return {
-        randomQuestion,
-        randomQuestionIsLoading
-    };
-}
-
-function mapDispatchToProps(dispatch) {
-    return {
-        actions: bindActionCreators({
-            fetchRandomQuestion
-        }, dispatch)
-    };
-}
+const mapDispatchToProps = (dispatch) => bindActionCreators({
+    onFetchRandomQuestion: fetchRandomQuestion
+}, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(RandomQuestion);
