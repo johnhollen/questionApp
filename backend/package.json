@@ -5,9 +5,8 @@
   "main": "server.js",
   "scripts": {
     "prestart": "npm install",
-    "start": "nodemon -L server.js"
+    "start": "node server.js"
   },
-  "author": "Johannes Söderberg, Kristoffer Leo, Daniel Ström, John Hollén",
   "license": "MIT",
   "dependencies": {
     "body-parser": "^1.15.0",

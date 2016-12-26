@@ -3,13 +3,13 @@ var mongoose = require('mongoose'),
 
 
 var AnswerSchema = new Schema({
-  text: String,
-  counter: {type: Number, default: 0}
+    text: String,
+    counter: {type: Number, default: 0}
 });
 
 var QuestionSchema = new Schema({
-  text: String,
-  options: [AnswerSchema]
+    text: String,
+    options: [AnswerSchema]
 });
 
 

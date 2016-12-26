@@ -1,6 +1,10 @@
 import request from './request';
 
-const BASE_URL = 'http://192.168.99.100/api';
+console.log('Using Environment >>', process.env.NODE_ENV);
+
+const isDevelopment = process.env.NODE_ENV === 'development';
+
+const BASE_URL = isDevelopment ? 'http://localhost:9000/api' : '';
 const RANDOM_QUESTION_URL = `${BASE_URL}/questions/random`;
 
 export const fetchRandomQuestion = () => request(RANDOM_QUESTION_URL);
