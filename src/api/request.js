@@ -5,7 +5,7 @@ const BASE_OPTIONS = {
 const checkErrorBoundaries = (response) => {
     if (response.status < 200 || response.status >= 400) {
         throw new Error(response.statusText);
-    };
+    }
     return response;
 };
 
