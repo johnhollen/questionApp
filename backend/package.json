@@ -1,0 +1,22 @@
+{
+  "name": "bra-ide",
+  "version": "0.0.1",
+  "description": "Web server for bra ide app",
+  "main": "server.js",
+  "scripts": {
+    "prestart": "npm install",
+    "start": "nodemon -L server.js"
+  },
+  "author": "Johannes Söderberg, Kristoffer Leo, Daniel Ström, John Hollén",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.15.0",
+    "compression": "^1.6.1",
+    "connect": "^3.4.1",
+    "express": "^4.13.4",
+    "lodash": "^4.6.1",
+    "mongoose": "^4.4.4",
+    "morgan": "^1.7.0",
+    "nodemon": "^1.9.0"
+  }
+}
