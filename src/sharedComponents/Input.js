@@ -9,14 +9,14 @@ class Input extends Component {
     }
 
     render() {
-        const {placeHolder, onChange} = this.props;
+        const {placeHolder, onChange, appearance = 'light'} = this.props;
         return (
             <View style={styles.wrapper}>
                 <TextInput
                     style={styles.input}
                     placeholder={placeHolder}
                     onChangeText={(text) => {console.log(text)}}
-                    keyboardAppearance='dark'
+                    keyboardAppearance={appearance}
                     returnKeyType='done'
                     placeholderTextColor='#f3f3f3'
                 />
@@ -27,7 +27,8 @@ class Input extends Component {
 
 Input.propTypes = {
     placeHolder: PropTypes.string,
-    onChange: PropTypes.func
+    onChange: PropTypes.func,
+    appearance: PropTypes.string
 };
 
 export default Input;
