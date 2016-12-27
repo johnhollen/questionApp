@@ -1,5 +1,5 @@
 import {fork, call, put, takeLatest} from 'redux-saga/effects';
-import {REQUEST_RANDOM_QUESTION} from '../../constants';
+import {REQUEST_RANDOM_QUESTION} from '../../actionConstants';
 import {fetchRandomQuestion} from '../../api/questionAPI';
 import {receiveRandomQuestion} from './questionActions';
 

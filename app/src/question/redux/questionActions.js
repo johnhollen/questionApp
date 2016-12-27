@@ -1,4 +1,4 @@
-import {REQUEST_RANDOM_QUESTION, RECEIVE_RANDOM_QUESTION} from '../../constants';
+import {REQUEST_RANDOM_QUESTION, RECEIVE_RANDOM_QUESTION} from '../../actionConstants';
 
 export const fetchRandomQuestion = () => ({
     type: REQUEST_RANDOM_QUESTION

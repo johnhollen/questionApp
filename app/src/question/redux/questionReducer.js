@@ -1,5 +1,5 @@
 import {combineReducers} from 'redux';
-import {REQUEST_RANDOM_QUESTION, RECEIVE_RANDOM_QUESTION} from '../../constants'; 
+import {REQUEST_RANDOM_QUESTION, RECEIVE_RANDOM_QUESTION} from '../../actionConstants';
 
 const INITIAL_LOADING_STATE = {
     randomQuestionIsLoading: true
