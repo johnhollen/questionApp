@@ -1,6 +1,6 @@
 import React, {PropTypes, Component} from 'react';
 import {TextInput, View} from 'react-native';
-import {noop} from 'lodash';
+import noop from 'lodash/noop';
 import styles from './Input.styles';
 
 class Input extends Component {
@@ -9,7 +9,7 @@ class Input extends Component {
     }
 
     render() {
-        const {placeHolder, onChange, appearance = 'light'} = this.props;
+        const {placeHolder, onChange = noop, appearance = 'light'} = this.props;
         return (
             <View style={styles.wrapper}>
                 <TextInput

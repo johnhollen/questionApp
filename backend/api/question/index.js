@@ -1,7 +1,7 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 
-var controller = require('./question.controller');
+const controller = require('./question.controller');
 
 //GET endpoints
 router.get('/', controller.getAll);

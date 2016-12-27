@@ -1,14 +1,13 @@
-var Question = require('./question.model');
-var _ = require('lodash');
-var mongoose = require('mongoose');
-var ObjectId = mongoose.Types.ObjectId;
+const Question = require('./question.model');
+const _ = require('lodash');
+const mongoose = require('mongoose');
+const ObjectId = mongoose.Types.ObjectId;
 
 /*
  GET - callbacks
  */
-exports.getAll = function (req, res) {
-
-    Question.find({}, function (err, questions) {
+exports.getAll = (req, res) => {
+    Question.find({}, (err, questions) => {
         if (err) {
             return handleError(res, err);
         }
@@ -21,10 +20,10 @@ exports.getAll = function (req, res) {
 
 };
 
-exports.getOne = function (req, res) {
-    var questionId = req.params.questionId;
+exports.getOne = (req, res) => {
+    const questionId = req.params.questionId;
 
-    Question.findById(questionId, function (err, question) {
+    Question.findById(questionId, (err, question) => {
         if (err) {
             return handleError(res, err);
         }
@@ -36,15 +35,15 @@ exports.getOne = function (req, res) {
     });
 };
 
-exports.getRandomQuestion = function (req, res) {
-    Question.count({}, function (err, count) {
+exports.getRandomQuestion = (req, res) => {
+    Question.count({}, (err, count) => {
         if (err) {
             return handleError(res, err);
         }
 
-        var randomNumber = Math.floor(Math.random() * count);
+        const randomNumber = Math.floor(Math.random() * count);
 
-        Question.findOne({}).skip(randomNumber).exec(function (err, question) {
+        Question.findOne({}).skip(randomNumber).exec((err, question) => {
             if (err) {
                 return handleError(res, err);
             }
@@ -62,9 +61,9 @@ exports.getRandomQuestion = function (req, res) {
  */
 
 exports.create = function (req, res) {
-    var incomingQuestion = req.body.question;
+    const incomingQuestion = req.body.question;
 
-    Question.create(incomingQuestion, function (err, question) {
+    Question.create(incomingQuestion, (err, question) => {
         if (err) {
             return handleError(res, err);
         }
@@ -76,10 +75,10 @@ exports.create = function (req, res) {
  PUT - callbacks
  */
 
-exports.update = function (req, res) {
-    var optionId = new ObjectId(req.params.optionId);
+exports.update = (req, res) => {
+    const optionId = new ObjectId(req.params.optionId);
 
-    Question.findOne({'options._id': optionId}, function (err, question) {
+    Question.findOne({'options._id': optionId}, (err, question) => {
         if (err) {
             return handleError(res, err);
         }
@@ -87,15 +86,15 @@ exports.update = function (req, res) {
             return res.status(404);
         }
 
-        var updated = question;
+        let updated = question;
 
-        _.forEach(updated.options, function (option) {
+        _.forEach(updated.options, (option) => {
             if (option._id.equals(optionId)) {
                 option.counter++;
             }
         });
 
-        updated.save(function (err, updatedQuestion) {
+        updated.save((err, updatedQuestion) => {
             if (err) {
                 return handleError(res, err);
             }
@@ -107,6 +106,4 @@ exports.update = function (req, res) {
 
 
 //Handle internal server errors
-function handleError(res, err) {
-    return res.status(500).send(err);
-}
+const handleError = (res, err) => res.status(500).send(err);

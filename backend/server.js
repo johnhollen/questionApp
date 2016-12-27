@@ -1,11 +1,10 @@
-var express = require('express');
-var bodyParser = require('body-parser');
-var compression = require('compression');
-var mongoose = require('mongoose');
-var serverConfig = require('./server-config')();
-var morgan = require('morgan');
-
-var app = express();
+const express = require('express');
+const bodyParser = require('body-parser');
+const compression = require('compression');
+const mongoose = require('mongoose');
+const serverConfig = require('./server-config')();
+const morgan = require('morgan');
+const app = express();
 
 //Configure app
 app.use(compression());
@@ -38,7 +37,7 @@ app.use(function (req, res, next) {
     next();
 });
 
-var port = 9000;
+const port = 9000;
 
 //Connect to mongodb
 mongoose.connect(serverConfig.dbUrl + "/" + serverConfig.dbName);

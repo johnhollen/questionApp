@@ -1,4 +1,7 @@
 import React, {PropTypes, Component} from 'react';
+import endsWith from 'lodash/endsWith';
+import isEmpty from 'lodash/isEmpty';
+import map from 'lodash/map';
 import {
     View, Text,
     TouchableOpacity
@@ -12,7 +15,6 @@ import {
     randomQuestionIsLoading
 } from './redux/questionSelectors';
 import styles from './RandomQuestion.styles.js';
-import {endsWith, isEmpty} from 'lodash';
 
 class RandomQuestion extends Component {
     constructor(props) {
@@ -29,7 +31,7 @@ class RandomQuestion extends Component {
         if (isEmpty(randomQuestion)) return null;
 
         const questionText = endsWith(randomQuestion.text, '?') ? randomQuestion.text : `${randomQuestion.text}?`;
-        const answers = randomQuestion.options.map((answer, index) => {
+        const answers = map(randomQuestion.options, (answer, index) => {
             const buttonStyle = index === 0 ? [styles.answerButton, styles.leftAnswer] : [styles.answerButton, styles.rightAnswer];
             return (
                 <TouchableOpacity onPress={() => console.log(answer.text)} key={answer._id}>

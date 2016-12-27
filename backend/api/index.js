@@ -1,6 +1,6 @@
 module.exports = function(app) {
 
-  var apiPrefix = '/api';
+  const apiPrefix = '/api';
 
   app.use(apiPrefix + '/questions', require('./question'));
 
