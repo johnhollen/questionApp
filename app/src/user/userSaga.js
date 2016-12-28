@@ -7,6 +7,7 @@ import {storeUser} from './userActions';
 const STORAGE_KEY = 'userId';
 const delayAmount = 1700;
 
+// Cred to http://stackoverflow.com/questions/105034/create-guid-uuid-in-javascript
 const generateUserId = () => {
     const randomize = () => Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
     return randomize() + randomize() + '-' + randomize() + '-' + randomize() + '-' +
