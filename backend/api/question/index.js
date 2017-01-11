@@ -7,6 +7,7 @@ const controller = require('./question.controller');
 router.get('/', controller.getAll);
 router.get('/one/:questionId', controller.getOne);
 router.get('/random', controller.getRandomQuestion);
+router.get('/user/:userId', controller.getQuestionsByUser)
 
 //POST endpoints
 router.post('/', controller.create);

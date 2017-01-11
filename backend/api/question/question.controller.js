@@ -51,8 +51,16 @@ exports.getRandomQuestion = (req, res) => {
                 return res.status(404);
             }
 
-            res.status(200).json(question);
+            return res.status(200).json(question);
         });
+    });
+};
+
+exports.getQuestionsByUser = (req, res) => {
+    const userId = req.params.userId;
+    Question.find({'owner': userId}, (err, questions) => {
+        if (err) return handleError(res, err);
+        return res.status(200).json(questions);
     });
 };
 
@@ -63,11 +71,20 @@ exports.getRandomQuestion = (req, res) => {
 exports.create = function (req, res) {
     const incomingQuestion = req.body.question;
 
+    if (!incomingQuestion.owner) return handleBadRequest(res, 'Need to specify owner.');
+    if (_.isEmpty(incomingQuestion.text)) return handleBadRequest(res, 'Need to specify question');
+    if (_.isEmpty(incomingQuestion.options)) return handleBadRequest(res, 'Need provide answers');
+    if (incomingQuestion.options.length !== 2) return handleBadRequest(res, 'Need two answers');
+
+    const areOptionsValid = !_.isEmpty(_.first(incomingQuestion.options).text)
+        && !_.isEmpty(_.last(incomingQuestion.options).text);
+    if (!areOptionsValid) return handleBadRequest(res, 'Need to specify answers');
+
     Question.create(incomingQuestion, (err, question) => {
         if (err) {
             return handleError(res, err);
         }
-        res.status(200).json(question);
+        return res.status(200).json(question);
     });
 };
 
@@ -107,3 +124,4 @@ exports.update = (req, res) => {
 
 //Handle internal server errors
 const handleError = (res, err) => res.status(500).send(err);
+const handleBadRequest = (res, reason) => res.status(400).send(reason);

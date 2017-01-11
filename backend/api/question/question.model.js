@@ -9,6 +9,7 @@ const AnswerSchema = new Schema({
 
 const QuestionSchema = new Schema({
     text: String,
+    owner: String,
     options: [AnswerSchema]
 });
 

@@ -4,7 +4,7 @@ import {AsyncStorage} from 'react-native';
 import {CHECK_FOR_USER} from '../actionConstants';
 import {storeUser} from './userActions';
 
-const STORAGE_KEY = 'userId';
+const STORAGE_KEY = 'questionApp:userId';
 const delayAmount = 1700;
 
 // Cred to http://stackoverflow.com/questions/105034/create-guid-uuid-in-javascript
