@@ -41,6 +41,8 @@ exports.getRandomQuestion = (req, res) => {
             return handleError(res, err);
         }
 
+        if (count === 0) return res.status(200).json({});
+
         const randomNumber = Math.floor(Math.random() * count);
 
         Question.findOne({}).skip(randomNumber).exec((err, question) => {

@@ -28,14 +28,20 @@ class RandomQuestion extends Component {
 
     renderQuestion() {
         const {randomQuestion} = this.props;
-        if (isEmpty(randomQuestion)) return null;
+        if (isEmpty(randomQuestion)) {
+            return (
+                <View>
+                    <Text style={styles.mainQuestion}>Det finns inga frågor just nu.</Text>
+                </View>
+            );
+        }
 
         const questionText = endsWith(randomQuestion.text, '?') ? randomQuestion.text : `${randomQuestion.text}?`;
         const answers = map(randomQuestion.options, (answer, index) => {
             const buttonStyle = index === 0 ? [styles.answerButton, styles.leftAnswer] : [styles.answerButton, styles.rightAnswer];
             return (
                 <TouchableOpacity onPress={() => console.log(answer.text)} key={answer._id}>
-                    <View style={buttonStyle}> 
+                    <View style={buttonStyle}>
                         <Text style={styles.answerButtonText}>{answer.text}</Text>
                     </View>
                 </TouchableOpacity>
@@ -58,7 +64,7 @@ class RandomQuestion extends Component {
         return (
             <View style={styles.container}>
                 <LoadingIndicator loading={randomQuestionIsLoading} size='large' color='#ffffff'>
-                    {this.renderQuestion()}          
+                    {this.renderQuestion()}
                 </LoadingIndicator>
             </View>
         );
