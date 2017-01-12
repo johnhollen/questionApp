@@ -1,12 +1,12 @@
 module.exports = function() {
     if (process.env.NODE_ENV === 'production') {
         return {
-            dbUrl: '',
-            dbName: 'braIde'
+            dbUrl: 'mongodb://questionappuser:questionapptest@ds033607.mlab.com:33607/questionapp',
+            dbName: 'questionapp'
         };
     }
     return {
         dbUrl: 'mongodb://localhost',
-        dbName: 'braIde'
+        dbName: 'questionapp'
     }
 }
