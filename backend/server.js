@@ -37,7 +37,7 @@ app.use(function (req, res, next) {
     next();
 });
 
-const port = 9000;
+const port = process.env.PORT || 9000;
 
 //Connect to mongodb
 mongoose.connect(serverConfig.dbUrl + "/" + serverConfig.dbName);
