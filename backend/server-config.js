@@ -1,7 +1,7 @@
 module.exports = function() {
     if (process.env.NODE_ENV === 'production') {
         return {
-            dbUrl: 'mongodb://questionappuser:questionapptest@ds033607.mlab.com:33607',
+            dbUrl: 'mongodb://questionAppUser:questiontest@ds033607.mlab.com:33607',
             dbName: 'questionapp'
         };
     }
