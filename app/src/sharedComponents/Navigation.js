@@ -4,31 +4,37 @@ import {
     StatusBar, Navigator,
     StyleSheet, TouchableOpacity
 } from 'react-native';
-import RandomQuestionView from '../question/RandomQuestion';
-import AddQuestionView from '../question/AddQuestion';
+import RandomQuestion from '../question/RandomQuestion';
+import AddQuestion from '../question/AddQuestion';
+import MyQuestions from '../question/MyQuestions';
 import navBarStyles from '../sharedComponents/Navbar.styles';
 
+const RANDOM_QUESTION = 'RANDOM_QUESTION';
+const ADD_QUESTION = 'ADD_QUESTION';
+const MY_QUESTIONS = 'MY_QUESTIONS';
+
 const routes = [
-    {title: 'Fråga', index: 'randomQuestionView'},
-    {title: 'Skapa Fråga', index: 'addQuestionView'}
+    {title: 'Fråga', index: RANDOM_QUESTION},
+    {title: 'Skapa Fråga', index: ADD_QUESTION},
+    {title: 'Mina Frågor', index: MY_QUESTIONS}
 ];
 
 const NavigationBarContent = {
     LeftButton(route, navigator) {
         switch (route.index) {
-            case 'randomQuestionView':
+            case RANDOM_QUESTION:
                 return (
-                    <TouchableOpacity onPress={() => navigator.pop()}>
+                    <TouchableOpacity onPress={() => navigator.push(routes[2])}>
                         <View style={navBarStyles.navBarButton}>
                             <Text style={navBarStyles.navBarButtonText}>Mina Frågor</Text>
                         </View>
                     </TouchableOpacity>
                 );
-            case 'addQuestionView':
+            case ADD_QUESTION:
                 return (
                     <TouchableOpacity onPress={() => navigator.pop()}>
                         <View style={navBarStyles.navBarButton}>
-                            <Text style={navBarStyles.navBarButtonText}>Avbryt</Text>
+                            <Text style={navBarStyles.navBarButtonText}>Tillbaka</Text>
                         </View>
                     </TouchableOpacity>
                 );
@@ -38,16 +44,26 @@ const NavigationBarContent = {
     },
 
     RightButton(route, navigator) {
-        if (route.index === 'randomQuestionView') {
-            return (
-                <TouchableOpacity onPress={() => navigator.push(routes[1])}>
-                    <View style={navBarStyles.navBarButton}>
-                        <Text style={navBarStyles.navBarButtonText}>{'Skapa'}</Text>
-                    </View>
-                </TouchableOpacity>
-            );
+        switch(route.index) {
+            case RANDOM_QUESTION:
+                return (
+                    <TouchableOpacity onPress={() => navigator.push(routes[1])}>
+                        <View style={navBarStyles.navBarButton}>
+                            <Text style={navBarStyles.navBarButtonText}>Skapa</Text>
+                        </View>
+                    </TouchableOpacity>
+                );
+            case MY_QUESTIONS:
+                return (
+                    <TouchableOpacity onPress={() => navigator.pop()}>
+                        <View style={navBarStyles.navBarButton}>
+                            <Text style={navBarStyles.navBarButtonText}>Tillbaka</Text>
+                        </View>
+                    </TouchableOpacity>
+                );
+            default:
+                return null;
         }
-        return null;
     },
 
     Title(route) {
@@ -59,19 +75,25 @@ const NavigationBarContent = {
 
 const renderScene = (route) => {
     switch (route.index) {
-        case 'randomQuestionView':
-            return <RandomQuestionView />;
-        case 'addQuestionView':
-            return <AddQuestionView />;
+        case RANDOM_QUESTION:
+            return <RandomQuestion />;
+        case ADD_QUESTION:
+            return <AddQuestion />;
+        case MY_QUESTIONS:
+            return <MyQuestions />;
         default:
-            return <RandomQuestionView />
+            return <RandomQuestion />;
     }
 };
 
 const configureScene = (route) => {
     switch (route.index) {
+        case MY_QUESTIONS:
+            return Navigator.SceneConfigs.FloatFromLeft;
+        case ADD_QUESTION:
+            return Navigator.SceneConfigs.FloatFromRight;
         default:
-            return Navigator.SceneConfigs.PushFromRight;
+            return Navigator.SceneConfigs.HorizontalSwipeJumpFromRight;
     }
 }
 
@@ -80,7 +102,6 @@ const NavigationBar = <Navigator.NavigationBar routeMapper={NavigationBarContent
 const Navigation = () => (
     <Navigator
         initialRoute={routes[0]}
-        initialRouteStack={routes}
         navigationBar={NavigationBar}
         renderScene={renderScene}
         configureScene={configureScene}
