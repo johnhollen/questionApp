@@ -8,7 +8,7 @@ import styles from './AddQuestion.styles.js';
 
 class AddQuestion extends Component {
     render() {
-        const {close} = this.props;
+        const {onClose} = this.props;
         return (
             <KeyboardAvoidingView behavior='padding'>
                 <View style={styles.container}>
@@ -23,7 +23,7 @@ class AddQuestion extends Component {
                                 <Text style={styles.addButtonText}>Skapa</Text>
                             </View>
                         </TouchableOpacity>
-                        <TouchableOpacity onPress={close}>
+                        <TouchableOpacity onPress={onClose}>
                             <View style={styles.closeButton}>
                                 <Text style={styles.addButtonText}>Avbryt</Text>
                             </View>
@@ -36,7 +36,7 @@ class AddQuestion extends Component {
 }
 
 AddQuestion.propTypes = {
-    close: PropTypes.func
+    onClose: PropTypes.func
 };
 
 export default AddQuestion;

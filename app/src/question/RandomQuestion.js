@@ -61,7 +61,7 @@ class RandomQuestion extends Component {
                 transparent={true}
                 visible={showModal}
             >
-                <AddQuestion close={this.hideModal} />
+                <AddQuestion onClose={this.hideModal} />
             </Modal>
         );
     }
