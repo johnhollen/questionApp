@@ -8,9 +8,10 @@ import styles from './AddQuestion.styles.js';
 
 class AddQuestion extends Component {
     render() {
+        const {close} = this.props;
         return (
-            <View style={styles.container}>
-                <KeyboardAvoidingView behavior='position'>
+            <KeyboardAvoidingView behavior='padding'>
+                <View style={styles.container}>
                     <Text style={styles.title}>Ställ din fråga</Text>
                     <Input placeHolder='Skriv din fråga...' />
                     <Text style={[styles.title, styles.provideAnswers]}>Ange dina svar</Text>
@@ -22,11 +23,20 @@ class AddQuestion extends Component {
                                 <Text style={styles.addButtonText}>Skapa</Text>
                             </View>
                         </TouchableOpacity>
+                        <TouchableOpacity onPress={close}>
+                            <View style={styles.closeButton}>
+                                <Text style={styles.addButtonText}>Avbryt</Text>
+                            </View>
+                        </TouchableOpacity>
                     </View>
-                </KeyboardAvoidingView>
-            </View>
+                </View>
+            </KeyboardAvoidingView>
         );
     }
 }
+
+AddQuestion.propTypes = {
+    close: PropTypes.func
+};
 
 export default AddQuestion;

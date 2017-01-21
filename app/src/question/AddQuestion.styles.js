@@ -3,11 +3,21 @@ import {StyleSheet} from 'react-native';
 const addQuestionViewStyles = {
     container: {
         backgroundColor: 'deepskyblue',
-        flex: 1,
         alignItems: 'stretch',
-        justifyContent: 'center',
+        justifyContent: 'space-between',
         padding: 15,
-        paddingTop: 50
+        margin: 20,
+        marginTop: 35,
+        borderRadius: 4,
+        borderColor: '#ffffff',
+        borderWidth: 2,
+        shadowColor: '#333',
+        shadowOpacity: 0.7,
+        shadowRadius: 3,
+        shadowOffset: {
+            width: 0,
+            height: 0
+        }
     },
     title: {
         color: '#ffffff',
@@ -38,7 +48,22 @@ const addQuestionViewStyles = {
             width: 0,
             height: 0
         },
-        backgroundColor: '#e34373'
+        backgroundColor: '#33cc33'
+    },
+    closeButton: {
+        borderColor: '#ffffff',
+        borderWidth: 1,
+        borderRadius: 4,
+        padding: 10,
+        shadowColor: '#333',
+        shadowOpacity: 0.7,
+        shadowRadius: 3,
+        shadowOffset: {
+            width: 0,
+            height: 0
+        },
+        backgroundColor: '#e34373',
+        marginTop: 10
     },
     addButtonText: {
         fontFamily: 'System',

@@ -3,8 +3,10 @@ import endsWith from 'lodash/endsWith';
 import isEmpty from 'lodash/isEmpty';
 import map from 'lodash/map';
 import {
-    View, Text,
-    TouchableOpacity
+    View,
+    Text,
+    TouchableOpacity,
+    Modal
 } from 'react-native';
 import {connect} from 'react-redux';
 import LoadingIndicator from '../sharedComponents/LoadingIndicator';
@@ -15,15 +17,53 @@ import {
     randomQuestionIsLoading
 } from './redux/questionSelectors';
 import styles from './RandomQuestion.styles.js';
+import AddQuestion from './AddQuestion';
+
+const AddButton = ({onPress}) => (
+    <TouchableOpacity onPress={onPress} style={styles.addButton}>
+        <View>
+            <Text style={styles.addButtonText}>+</Text>
+        </View>
+    </TouchableOpacity>
+);
+
+AddButton.propTypes = {
+    onPress: PropTypes.func
+};
 
 class RandomQuestion extends Component {
     constructor(props) {
         super(props);
+        this.state = {showModal: false};
+        this.showModal = this.showModal.bind(this);
+        this.hideModal = this.hideModal.bind(this);
     }
 
     componentWillMount() {
         const {onFetchRandomQuestion} = this.props;
         onFetchRandomQuestion();
+    }
+
+    hideModal() {
+        this.setState({showModal: false});
+    }
+
+    showModal() {
+        this.setState({showModal: true});
+    }
+
+    renderModal() {
+        const {showModal} = this.state;
+
+        return (
+            <Modal
+                animationType='slide'
+                transparent={true}
+                visible={showModal}
+            >
+                <AddQuestion close={this.hideModal} />
+            </Modal>
+        );
     }
 
     renderQuestion() {
@@ -55,6 +95,7 @@ class RandomQuestion extends Component {
                 <View style={styles.answerContainer}>
                     {answers}
                 </View>
+                <AddButton onPress={this.showModal} />
             </View>
         );
     }
@@ -66,6 +107,7 @@ class RandomQuestion extends Component {
                 <LoadingIndicator loading={randomQuestionIsLoading} size='large' color='#ffffff'>
                     {this.renderQuestion()}
                 </LoadingIndicator>
+                {this.renderModal()}
             </View>
         );
     }
