@@ -3,3 +3,5 @@ export const randomQuestionIsLoading = (state) =>
     state.randomQuestion.loadingStatus.randomQuestionIsLoading;
 
 export const addQuestionIsShowing = (state) => state.UI.addQuestion.visible;
+export const getAddQuestionViewMode = (state) =>
+    state.UI.addQuestion.viewMode;

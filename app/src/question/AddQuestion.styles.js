@@ -4,7 +4,7 @@ const addQuestionViewStyles = {
     container: {
         backgroundColor: 'deepskyblue',
         alignItems: 'stretch',
-        justifyContent: 'space-between',
+        justifyContent: 'center',
         padding: 15,
         margin: 20,
         marginTop: 35,

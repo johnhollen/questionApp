@@ -6,22 +6,28 @@ import styles from './Input.styles';
 class Input extends Component {
     constructor(props) {
         super(props);
+        this.handleInputChange = this.handleInputChange.bind(this);
+    }
+
+    handleInputChange(text) {
+        const {onChange} = this.props;
+        onChange(text);
     }
 
     render() {
-        const {placeHolder, onChange = noop, appearance = 'light'} = this.props;
+        const {placeHolder, appearance = 'light'} = this.props;
         return (
             <View style={styles.wrapper}>
                 <TextInput
                     style={styles.input}
                     placeholder={placeHolder}
-                    onChangeText={(text) => {console.log(text)}}
+                    onChangeText={this.handleInputChange}
                     keyboardAppearance={appearance}
                     returnKeyType='done'
                     placeholderTextColor='#f3f3f3'
                 />
             </View>
-        );        
+        );
     }
 };
 

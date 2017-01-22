@@ -1,8 +1,6 @@
 import React, {PropTypes, Component} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import {addQuestionIsShowing} from './redux/questionSelectors';
-import {showOrHideAddQuestionModal} from './redux/questionActions';
 import {
     View,
     Text,
@@ -10,6 +8,9 @@ import {
     KeyboardAvoidingView,
     Modal
 } from 'react-native';
+import {addQuestionIsShowing, getAddQuestionViewMode} from './redux/questionSelectors';
+import {showOrHideAddQuestionModal} from './redux/questionActions';
+import LoadingIndicator from '../sharedComponents/LoadingIndicator';
 import Input from '../sharedComponents/Input';
 import styles from './AddQuestion.styles';
 
@@ -20,7 +21,15 @@ export const CREATED = 'CREATED';
 class AddQuestion extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            questionText: '',
+            firstAnswer: '',
+            secondAnswer: ''
+        };
         this.onDismiss = this.onDismiss.bind(this);
+        this.handleQuestionTextChange = this.handleQuestionTextChange.bind(this);
+        this.handleFirstAnswerTextChange = this.handleFirstAnswerTextChange.bind(this);
+        this.handleSecondAnswerTextChange = this.handleSecondAnswerTextChange.bind(this);
     }
 
     onDismiss() {
@@ -28,14 +37,26 @@ class AddQuestion extends Component {
         onClose(false);
     }
 
+    handleQuestionTextChange(text) {
+        this.setState({questionText: text});
+    }
+
+    handleFirstAnswerTextChange(text) {
+        this.setState({firstAnswer: text})
+    }
+
+    handleSecondAnswerTextChange(text) {
+        this.setState({secondAnswer: text})
+    }
+
     renderCreateMode() {
         return (
             <View style={styles.container}>
                 <Text style={styles.title}>Ställ din fråga</Text>
-                <Input placeHolder='Skriv din fråga...' />
+                <Input placeHolder='Skriv din fråga...' onChange={this.handleQuestionTextChange} />
                 <Text style={[styles.title, styles.provideAnswers]}>Ange dina svar</Text>
-                <Input placeHolder='Första svaret...' />
-                <Input placeHolder='Andra svaret...' />
+                <Input placeHolder='Första svaret...' onChange={this.handleFirstAnswerTextChange} />
+                <Input placeHolder='Andra svaret...' onChange={this.handleSecondAnswerTextChange} />
                 <View style={styles.buttonContainer}>
                     <TouchableOpacity onPress={() => console.log('Add button press')}>
                         <View style={styles.addButton}>
@@ -53,10 +74,16 @@ class AddQuestion extends Component {
     }
 
     getViewToRender() {
-        const {createState} = this.props;
-        switch (createState) {
+        const {viewMode} = this.props;
+        switch (viewMode) {
             case CREATING:
                 return this.renderCreateMode();
+            case LOADING:
+                return (
+                    <View style={styles.container}>
+                        <LoadingIndicator loading={true} color='#ffffff' size='large' />
+                    </View>
+                );
             default:
                 return this.renderCreateMode();
         }
@@ -79,11 +106,13 @@ class AddQuestion extends Component {
 
 AddQuestion.propTypes = {
     onClose: PropTypes.func,
-    visible: PropTypes.bool
+    visible: PropTypes.bool,
+    viewMode: PropTypes.string
 };
 
 const mapStateToProps = (state) => ({
-    visible: addQuestionIsShowing(state)
+    visible: addQuestionIsShowing(state),
+    viewMode: getAddQuestionViewMode(state)
 });
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({
