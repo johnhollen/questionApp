@@ -17,7 +17,8 @@ const addQuestionViewStyles = {
         shadowOffset: {
             width: 0,
             height: 0
-        }
+        },
+        height: 500
     },
     title: {
         color: '#ffffff',

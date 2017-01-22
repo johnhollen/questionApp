@@ -5,18 +5,17 @@ import map from 'lodash/map';
 import {
     View,
     Text,
-    TouchableOpacity,
-    Modal
+    TouchableOpacity
 } from 'react-native';
 import {connect} from 'react-redux';
 import LoadingIndicator from '../sharedComponents/LoadingIndicator';
 import {bindActionCreators} from 'redux';
-import {fetchRandomQuestion} from './redux/questionActions';
+import {fetchRandomQuestion, showOrHideAddQuestionModal} from './redux/questionActions';
 import {
     getRandomQuestion,
     randomQuestionIsLoading
 } from './redux/questionSelectors';
-import styles from './RandomQuestion.styles.js';
+import styles from './RandomQuestion.styles';
 import AddQuestion from './AddQuestion';
 
 const AddButton = ({onPress}) => (
@@ -34,9 +33,7 @@ AddButton.propTypes = {
 class RandomQuestion extends Component {
     constructor(props) {
         super(props);
-        this.state = {showModal: false};
         this.showModal = this.showModal.bind(this);
-        this.hideModal = this.hideModal.bind(this);
     }
 
     componentWillMount() {
@@ -44,26 +41,13 @@ class RandomQuestion extends Component {
         onFetchRandomQuestion();
     }
 
-    hideModal() {
-        this.setState({showModal: false});
+    renderModal() {
+        return <AddQuestion />;
     }
 
     showModal() {
-        this.setState({showModal: true});
-    }
-
-    renderModal() {
-        const {showModal} = this.state;
-
-        return (
-            <Modal
-                animationType='slide'
-                transparent={true}
-                visible={showModal}
-            >
-                <AddQuestion onClose={this.hideModal} />
-            </Modal>
-        );
+        const {onShowModal} = this.props;
+        onShowModal(true);
     }
 
     renderQuestion() {
@@ -116,7 +100,8 @@ class RandomQuestion extends Component {
 RandomQuestion.propTypes = {
     onFetchRandomQuestion: PropTypes.func,
     randomQuestion: PropTypes.object,
-    randomQuestionIsLoading: PropTypes.bool
+    randomQuestionIsLoading: PropTypes.bool,
+    onShowModal: PropTypes.func
 };
 
 const mapStateToProps = (state) => ({
@@ -125,7 +110,8 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({
-    onFetchRandomQuestion: fetchRandomQuestion
+    onFetchRandomQuestion: fetchRandomQuestion,
+    onShowModal: showOrHideAddQuestionModal
 }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(RandomQuestion);
