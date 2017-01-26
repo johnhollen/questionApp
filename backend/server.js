@@ -40,13 +40,14 @@ app.use((req, res, next) => {
 const port = process.env.PORT || 9000;
 
 //Connect to mongodb
+mongoose.Promise = global.Promise;
 mongoose.connect(`${serverConfig.dbUrl}/${serverConfig.dbName}`);
 
 //Load the api modules
 require('./api')(app);
 
 app.get('*', (req, res) => {
-    res.send("It works! :D");
+    res.send("QuestionApp backend.");
 });
 
 app.listen(port, () => {
