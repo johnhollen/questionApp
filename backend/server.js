@@ -19,7 +19,7 @@ app.use(bodyParser.json());
 app.use(morgan('dev'));
 
 // Add headers
-app.use(function (req, res, next) {
+app.use((req, res, next) => {
     // Website you wish to allow to connect
     res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8080');
 
@@ -40,15 +40,15 @@ app.use(function (req, res, next) {
 const port = process.env.PORT || 9000;
 
 //Connect to mongodb
-mongoose.connect(serverConfig.dbUrl + "/" + serverConfig.dbName);
+mongoose.connect(`${serverConfig.dbUrl}/${serverConfig.dbName}`);
 
 //Load the api modules
 require('./api')(app);
 
-app.get('*', function (req, res) {
+app.get('*', (req, res) => {
     res.send("It works! :D");
 });
 
-app.listen(port, function () {
+app.listen(port, () => {
     console.log("Awesomeness is happening on port: ", port);
 });

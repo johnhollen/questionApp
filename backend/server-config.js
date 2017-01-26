@@ -1,7 +1,7 @@
-module.exports = function() {
+module.exports = () => {
     if (process.env.NODE_ENV === 'production') {
         return {
-            dbUrl: 'mongodb://questionAppUser:questiontest@ds033607.mlab.com:33607',
+            dbUrl: `mongodb://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@ds033607.mlab.com:33607`,
             dbName: 'questionapp'
         };
     }
@@ -9,4 +9,4 @@ module.exports = function() {
         dbUrl: 'mongodb://localhost',
         dbName: 'questionapp'
     }
-}
+};
