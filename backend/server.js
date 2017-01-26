@@ -2,7 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const compression = require('compression');
 const mongoose = require('mongoose');
-const serverConfig = require('./server-config')();
+const serverConfig = require('./serverConfig');
 const morgan = require('morgan');
 const app = express();
 
