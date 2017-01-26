@@ -1,7 +1,8 @@
 import {
     REQUEST_RANDOM_QUESTION,
     RECEIVE_RANDOM_QUESTION,
-    SHOW_OR_HIDE_ADD_QUESTION
+    SHOW_OR_HIDE_ADD_QUESTION,
+    CREATE_QUESTION
 } from '../../actionConstants';
 
 export const fetchRandomQuestion = () => ({
@@ -18,4 +19,9 @@ export const showOrHideAddQuestionModal = (isShowing) => ({
     payload: {
         isShowing
     }
+});
+
+export const createQuestion = (inputData) => ({
+    type: CREATE_QUESTION,
+    payload: inputData
 });

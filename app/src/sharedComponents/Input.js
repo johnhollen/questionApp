@@ -25,6 +25,7 @@ class Input extends Component {
                     keyboardAppearance={appearance}
                     returnKeyType='done'
                     placeholderTextColor='#f3f3f3'
+                    multiline={true}
                 />
             </View>
         );

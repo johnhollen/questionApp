@@ -9,7 +9,7 @@ import {
     Modal
 } from 'react-native';
 import {addQuestionIsShowing, getAddQuestionViewMode} from './redux/questionSelectors';
-import {showOrHideAddQuestionModal} from './redux/questionActions';
+import {showOrHideAddQuestionModal, createQuestion} from './redux/questionActions';
 import LoadingIndicator from '../sharedComponents/LoadingIndicator';
 import Input from '../sharedComponents/Input';
 import styles from './AddQuestion.styles';
@@ -30,6 +30,7 @@ class AddQuestion extends Component {
         this.handleQuestionTextChange = this.handleQuestionTextChange.bind(this);
         this.handleFirstAnswerTextChange = this.handleFirstAnswerTextChange.bind(this);
         this.handleSecondAnswerTextChange = this.handleSecondAnswerTextChange.bind(this);
+        this.handleCreate = this.handleCreate.bind(this);
     }
 
     onDismiss() {
@@ -49,6 +50,16 @@ class AddQuestion extends Component {
         this.setState({secondAnswer: text})
     }
 
+    handleCreate() {
+        const {questionText, firstAnswer, secondAnswer} = this.state;
+        const {onCreateQuestion} = this.props;
+        onCreateQuestion({
+            questionText,
+            firstAnswer,
+            secondAnswer
+        });
+    }
+
     renderCreateMode() {
         return (
             <View style={styles.container}>
@@ -58,7 +69,7 @@ class AddQuestion extends Component {
                 <Input placeHolder='Första svaret...' onChange={this.handleFirstAnswerTextChange} />
                 <Input placeHolder='Andra svaret...' onChange={this.handleSecondAnswerTextChange} />
                 <View style={styles.buttonContainer}>
-                    <TouchableOpacity onPress={() => console.log('Add button press')}>
+                    <TouchableOpacity onPress={this.handleCreate}>
                         <View style={styles.addButton}>
                             <Text style={styles.addButtonText}>Skapa</Text>
                         </View>
@@ -105,6 +116,7 @@ class AddQuestion extends Component {
 }
 
 AddQuestion.propTypes = {
+    onCreateQuestion: PropTypes.func,
     onClose: PropTypes.func,
     visible: PropTypes.bool,
     viewMode: PropTypes.string
@@ -116,6 +128,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({
+    onCreateQuestion: createQuestion,
     onClose: showOrHideAddQuestionModal
 }, dispatch);
 
