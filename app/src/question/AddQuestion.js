@@ -6,7 +6,8 @@ import {
     Text,
     TouchableOpacity,
     KeyboardAvoidingView,
-    Modal
+    Modal,
+    Animated
 } from 'react-native';
 import {addQuestionIsShowing, getAddQuestionViewMode} from './redux/questionSelectors';
 import {showOrHideAddQuestionModal, createQuestion} from './redux/questionActions';
@@ -17,6 +18,41 @@ import styles from './AddQuestion.styles';
 export const CREATING = 'CREATING';
 export const LOADING = 'LOADING';
 export const CREATED = 'CREATED';
+
+class QuestionAdded extends Component {
+    constructor() {
+        super();
+        this.animation = new Animated.Value(0);
+    }
+
+    componentDidMount() {
+        Animated.spring(this.animation, {
+            toValue: 0,
+            velocity: 2,
+            tension: -10,
+            friction: 0.1
+        }).start();
+    }
+
+    render() {
+        return (
+            <Animated.View
+                style={{
+                    transform: [
+                        {
+                            scale: this.animation.interpolate({
+                                inputRange: [0, 1],
+                                outputRange: [1, 1.3],
+                            })
+                        }
+                    ]
+                }}
+            >
+                <Text style={styles.title}>Din fråga har skapats!</Text>
+            </Animated.View>
+        );
+    }
+}
 
 class AddQuestion extends Component {
     constructor(props) {
@@ -93,6 +129,12 @@ class AddQuestion extends Component {
                 return (
                     <View style={styles.container}>
                         <LoadingIndicator loading={true} color='#ffffff' size='large' />
+                    </View>
+                );
+            case CREATED:
+                return (
+                    <View style={styles.container}>
+                        <QuestionAdded />
                     </View>
                 );
             default:
