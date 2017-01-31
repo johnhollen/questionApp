@@ -35,19 +35,17 @@ class QuestionAdded extends Component {
     }
 
     render() {
+        const animatedStyle = {
+            transform: [{
+                scale: this.animation.interpolate({
+                    inputRange: [0, 1],
+                    outputRange: [1, 1.3]
+                })
+            }]
+        };
+
         return (
-            <Animated.View
-                style={{
-                    transform: [
-                        {
-                            scale: this.animation.interpolate({
-                                inputRange: [0, 1],
-                                outputRange: [1, 1.3],
-                            })
-                        }
-                    ]
-                }}
-            >
+            <Animated.View style={animatedStyle}>
                 <Text style={styles.title}>Din fråga har skapats!</Text>
             </Animated.View>
         );
