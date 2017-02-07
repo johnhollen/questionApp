@@ -1,7 +1,12 @@
 const Question = require('./question.model');
 const _ = require('lodash');
 const mongoose = require('mongoose');
+
 const ObjectId = mongoose.Types.ObjectId;
+
+// Handle internal server errors
+const handleError = (res, err) => res.status(500).send(err);
+const handleBadRequest = (res, reason) => res.status(400).send(reason);
 
 /*
  GET - callbacks
@@ -17,7 +22,6 @@ exports.getAll = (req, res) => {
 
         return res.status(200).json(questions);
     });
-
 };
 
 exports.getOne = (req, res) => {
@@ -60,7 +64,7 @@ exports.getRandomQuestion = (req, res) => {
 
 exports.getQuestionsByUser = (req, res) => {
     const userId = req.params.userId;
-    Question.find({'owner': userId}, (err, questions) => {
+    Question.find({owner: userId}, (err, questions) => {
         if (err) return handleError(res, err);
         return res.status(200).json(questions);
     });
@@ -70,8 +74,9 @@ exports.getQuestionsByUser = (req, res) => {
  POST - callbacks
  */
 
-exports.create = function (req, res) {
-    const incomingQuestion = req.body.question;
+exports.create = (req, res) => {
+    const jsonBody = JSON.parse(req.body);
+    const incomingQuestion = jsonBody.question;
 
     if (!incomingQuestion.owner) return handleBadRequest(res, 'Need to specify owner.');
     if (_.isEmpty(incomingQuestion.text)) return handleBadRequest(res, 'Need to specify question');
@@ -105,7 +110,7 @@ exports.update = (req, res) => {
             return res.status(404);
         }
 
-        let updated = question;
+        const updated = question;
 
         _.forEach(updated.options, (option) => {
             if (option._id.equals(optionId)) {
@@ -122,8 +127,3 @@ exports.update = (req, res) => {
         });
     });
 };
-
-
-//Handle internal server errors
-const handleError = (res, err) => res.status(500).send(err);
-const handleBadRequest = (res, reason) => res.status(400).send(reason);

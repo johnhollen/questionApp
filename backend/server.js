@@ -4,11 +4,13 @@ const compression = require('compression');
 const mongoose = require('mongoose');
 const serverConfig = require('./serverConfig');
 const morgan = require('morgan');
+
 const app = express();
 
 app.use(compression());
 app.use(bodyParser.urlencoded({extended: false}));
-app.use(bodyParser.json());
+// app.use(bodyParser.json());
+app.use(bodyParser.text());
 app.use(morgan('dev'));
 
 // Add headers
@@ -28,7 +30,7 @@ mongoose.connect(`${serverConfig.dbUrl}/${serverConfig.dbName}`);
 require('./api')(app);
 
 app.get('*', (req, res) => {
-    res.send("QuestionApp backend.");
+    res.send('QuestionApp backend.');
 });
 
 app.listen(port, () => {
