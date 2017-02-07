@@ -6,7 +6,9 @@ import {
     Text,
     TouchableOpacity,
     Modal,
-    Animated
+    Animated,
+    Keyboard,
+    TouchableWithoutFeedback
 } from 'react-native';
 import {addQuestionIsShowing, getAddQuestionViewMode} from './redux/questionSelectors';
 import {showOrHideAddQuestionModal, createQuestion} from './redux/questionActions';
@@ -95,25 +97,27 @@ class AddQuestion extends Component {
 
     renderCreateMode() {
         return (
-            <View style={styles.container}>
-                <Text style={styles.title}>Ställ din fråga</Text>
-                <Input placeHolder="Skriv din fråga..." onChange={this.handleQuestionTextChange} />
-                <Text style={[styles.title, styles.provideAnswers]}>Ange dina svar</Text>
-                <Input placeHolder="Första svaret..." onChange={this.handleFirstAnswerTextChange} />
-                <Input placeHolder="Andra svaret..." onChange={this.handleSecondAnswerTextChange} />
-                <View style={styles.buttonContainer}>
-                    <TouchableOpacity onPress={this.handleCreate}>
-                        <View style={styles.addButton}>
-                            <Text style={styles.addButtonText}>Skapa</Text>
-                        </View>
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={this.onDismiss}>
-                        <View style={styles.closeButton}>
-                            <Text style={styles.addButtonText}>Avbryt</Text>
-                        </View>
-                    </TouchableOpacity>
+            <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+                <View style={styles.container}>
+                    <Text style={styles.title}>Ställ din fråga</Text>
+                    <Input placeHolder="Skriv din fråga..." onChange={this.handleQuestionTextChange} />
+                    <Text style={[styles.title, styles.provideAnswers]}>Ange dina svar</Text>
+                    <Input placeHolder="Första svaret..." onChange={this.handleFirstAnswerTextChange} />
+                    <Input placeHolder="Andra svaret..." onChange={this.handleSecondAnswerTextChange} />
+                    <View style={styles.buttonContainer}>
+                        <TouchableOpacity onPress={this.handleCreate}>
+                            <View style={styles.addButton}>
+                                <Text style={styles.addButtonText}>Skapa</Text>
+                            </View>
+                        </TouchableOpacity>
+                        <TouchableOpacity onPress={this.onDismiss}>
+                            <View style={styles.closeButton}>
+                                <Text style={styles.addButtonText}>Avbryt</Text>
+                            </View>
+                        </TouchableOpacity>
+                    </View>
                 </View>
-            </View>
+            </TouchableWithoutFeedback>
         );
     }
 

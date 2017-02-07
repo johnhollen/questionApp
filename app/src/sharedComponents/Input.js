@@ -22,7 +22,7 @@ class Input extends Component {
                     placeholder={placeHolder}
                     onChangeText={this.handleInputChange}
                     keyboardAppearance={appearance}
-                    returnKeyType="done"
+                    returnKeyType="default"
                     placeholderTextColor="#f3f3f3"
                     multiline={true}
                 />
