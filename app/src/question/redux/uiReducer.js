@@ -15,7 +15,7 @@ function addQuestion(state = INITIAL_ADD_QUESTION_STATE, action) {
             return {
                 ...state,
                 visible: payload.isShowing
-            }
+            };
         default:
             return state;
     }

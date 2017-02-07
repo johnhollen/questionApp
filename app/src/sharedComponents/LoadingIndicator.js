@@ -15,7 +15,8 @@ const LoadingIndicator = (props) => {
 LoadingIndicator.propTypes = {
     loading: PropTypes.bool,
     size: PropTypes.string,
-    color: PropTypes.string
+    color: PropTypes.string,
+    children: PropTypes.element
 };
 
 export default LoadingIndicator;
