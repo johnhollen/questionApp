@@ -14,4 +14,4 @@ export const createQuestion = (questionToCreate) => {
         body: JSON.stringify(questionToCreate)
     };
     return request(QUESTIONS_URL, options);
-}
+};

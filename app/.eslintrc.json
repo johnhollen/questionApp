@@ -8,9 +8,22 @@
     "rules": {
         "indent": ["error", 4, { "SwitchCase": 1}],
         "comma-dangle": ["error", "never"],
+        "no-console": "error",
         "object-curly-spacing": ["error", "never"],
+        "no-underscore-dangle": 0,
         "react/require-default-props": 0,
         "react/jsx-filename-extension": 0,
-        "react/jsx-indent": ["error", 4]
+        "react/jsx-indent": ["error", 4],
+        "react/jsx-boolean-value": 0,
+        "react/no-multi-comp": 0,
+        "react/sort-comp": 0,
+        "react/jsx-indent-props": ["error", 4],
+        "react/forbid-prop-types": 0,
+        "arrow-parens": ["error", "always"],
+        "import/prefer-default-export": 0,
+        "max-len": 0
+    },
+    "globals": {
+        "fetch": false
     }
 }

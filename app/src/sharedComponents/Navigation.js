@@ -1,8 +1,9 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {
-    View, Text,
-    StatusBar, Navigator,
-    StyleSheet, TouchableOpacity
+    View,
+    Text,
+    Navigator,
+    TouchableOpacity
 } from 'react-native';
 import RandomQuestion from '../question/RandomQuestion';
 import MyQuestions from '../question/MyQuestions';
@@ -33,7 +34,7 @@ const NavigationBarContent = {
     },
 
     RightButton(route, navigator) {
-        switch(route.index) {
+        switch (route.index) {
             case RANDOM_QUESTION:
                 return (
                     <TouchableOpacity onPress={() => navigator.push(routes[1])}>
@@ -65,7 +66,12 @@ const renderScene = (route) => {
     }
 };
 
-const NavigationBar = <Navigator.NavigationBar routeMapper={NavigationBarContent} style={navBarStyles.navBar} />;
+const NavigationBar = (
+    <Navigator.NavigationBar
+        routeMapper={NavigationBarContent}
+        style={navBarStyles.navBar}
+    />
+);
 
 const Navigation = () => (
     <Navigator

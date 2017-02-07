@@ -5,7 +5,6 @@ import {
     View,
     Text,
     TouchableOpacity,
-    KeyboardAvoidingView,
     Modal,
     Animated
 } from 'react-native';
@@ -34,7 +33,7 @@ class QuestionAdded extends Component {
         }).start();
     }
 
-    render() {
+    render() {
         const animatedStyle = {
             transform: [{
                 scale: this.animation.interpolate({
@@ -77,11 +76,11 @@ class AddQuestion extends Component {
     }
 
     handleFirstAnswerTextChange(text) {
-        this.setState({firstAnswer: text})
+        this.setState({firstAnswer: text});
     }
 
     handleSecondAnswerTextChange(text) {
-        this.setState({secondAnswer: text})
+        this.setState({secondAnswer: text});
     }
 
     handleCreate() {
@@ -98,10 +97,10 @@ class AddQuestion extends Component {
         return (
             <View style={styles.container}>
                 <Text style={styles.title}>Ställ din fråga</Text>
-                <Input placeHolder='Skriv din fråga...' onChange={this.handleQuestionTextChange} />
+                <Input placeHolder="Skriv din fråga..." onChange={this.handleQuestionTextChange} />
                 <Text style={[styles.title, styles.provideAnswers]}>Ange dina svar</Text>
-                <Input placeHolder='Första svaret...' onChange={this.handleFirstAnswerTextChange} />
-                <Input placeHolder='Andra svaret...' onChange={this.handleSecondAnswerTextChange} />
+                <Input placeHolder="Första svaret..." onChange={this.handleFirstAnswerTextChange} />
+                <Input placeHolder="Andra svaret..." onChange={this.handleSecondAnswerTextChange} />
                 <View style={styles.buttonContainer}>
                     <TouchableOpacity onPress={this.handleCreate}>
                         <View style={styles.addButton}>
@@ -126,7 +125,7 @@ class AddQuestion extends Component {
             case LOADING:
                 return (
                     <View style={styles.container}>
-                        <LoadingIndicator loading={true} color='#ffffff' size='large' />
+                        <LoadingIndicator loading={true} color="#ffffff" size="large" />
                     </View>
                 );
             case CREATED:
@@ -145,7 +144,7 @@ class AddQuestion extends Component {
         const view = this.getViewToRender();
         return (
             <Modal
-                animationType='slide'
+                animationType="slide"
                 transparent={true}
                 visible={visible}
             >

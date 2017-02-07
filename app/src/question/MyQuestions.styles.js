@@ -10,4 +10,4 @@ const myQuestionStyles = {
     }
 };
 
-export default myQuestionStyles;
+export default StyleSheet.create(myQuestionStyles);

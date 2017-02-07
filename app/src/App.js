@@ -28,7 +28,8 @@ class App extends Component {
 }
 
 App.propTypes = {
-    onCheckForUser: PropTypes.func
+    onCheckForUser: PropTypes.func,
+    user: PropTypes.string
 };
 
 const mapStateToProps = (state) => ({

@@ -99,7 +99,7 @@ const randomQuestionStyles = {
         padding: 0,
         margin: 0,
         marginTop: -5
-    },
+    }
 };
 
 export default StyleSheet.create(randomQuestionStyles);

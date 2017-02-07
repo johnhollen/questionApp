@@ -1,6 +1,5 @@
 import React, {PropTypes, Component} from 'react';
 import {TextInput, View} from 'react-native';
-import noop from 'lodash/noop';
 import styles from './Input.styles';
 
 class Input extends Component {
@@ -23,14 +22,14 @@ class Input extends Component {
                     placeholder={placeHolder}
                     onChangeText={this.handleInputChange}
                     keyboardAppearance={appearance}
-                    returnKeyType='done'
-                    placeholderTextColor='#f3f3f3'
+                    returnKeyType="done"
+                    placeholderTextColor="#f3f3f3"
                     multiline={true}
                 />
             </View>
         );
     }
-};
+}
 
 Input.propTypes = {
     placeHolder: PropTypes.string,

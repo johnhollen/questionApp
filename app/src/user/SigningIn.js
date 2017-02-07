@@ -1,6 +1,7 @@
-import React, {PropTypes} from 'react';
+import React from 'react';
 import {
-    View, Text
+    View,
+    Text
 } from 'react-native';
 import LoadingIndicator from '../sharedComponents/LoadingIndicator';
 import styles from './SigningIn.styles';
@@ -8,7 +9,7 @@ import styles from './SigningIn.styles';
 const SigningIn = () => (
     <View style={styles.container}>
         <Text style={styles.text}>Loggar in</Text>
-        <LoadingIndicator loading={true} color='#ffffff' size='large' />
+        <LoadingIndicator loading={true} color="#ffffff" size="large" />
     </View>
 );
 

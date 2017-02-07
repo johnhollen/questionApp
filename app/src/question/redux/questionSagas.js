@@ -8,14 +8,15 @@ function* randomQuestionFetchFlow() {
     try {
         data = yield call(fetchRandomQuestion);
     } catch (error) {
-        console.log(error);
+        // TODO: error handling
         return;
     }
     yield put(receiveRandomQuestion(data));
 }
 
 function* createQuestionFlow(action) {
-    console.log('ACTION >>', action);
+    const {payload} = action;
+    console.log(action);
 }
 
 export default function* fetchQuestionSagas() {

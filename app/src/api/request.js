@@ -14,5 +14,5 @@ const JSONtransform = (response) => response.json();
 export default function request(url, options = BASE_OPTIONS) {
     return fetch(url, options)
         .then(checkErrorBoundaries)
-        .then(JSONtransform)
+        .then(JSONtransform);
 }

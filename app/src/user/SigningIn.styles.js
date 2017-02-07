@@ -25,4 +25,4 @@ const SigningInStyles = {
     }
 };
 
-export default SigningInStyles;
+export default StyleSheet.create(SigningInStyles);

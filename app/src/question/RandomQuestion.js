@@ -8,8 +8,8 @@ import {
     TouchableOpacity
 } from 'react-native';
 import {connect} from 'react-redux';
-import LoadingIndicator from '../sharedComponents/LoadingIndicator';
 import {bindActionCreators} from 'redux';
+import LoadingIndicator from '../sharedComponents/LoadingIndicator';
 import {fetchRandomQuestion, showOrHideAddQuestionModal} from './redux/questionActions';
 import {
     getRandomQuestion,
@@ -41,10 +41,6 @@ class RandomQuestion extends Component {
         onFetchRandomQuestion();
     }
 
-    renderModal() {
-        return <AddQuestion />;
-    }
-
     showModal() {
         const {onShowModal} = this.props;
         onShowModal(true);
@@ -62,9 +58,12 @@ class RandomQuestion extends Component {
 
         const questionText = endsWith(randomQuestion.text, '?') ? randomQuestion.text : `${randomQuestion.text}?`;
         const answers = map(randomQuestion.options, (answer, index) => {
-            const buttonStyle = index === 0 ? [styles.answerButton, styles.leftAnswer] : [styles.answerButton, styles.rightAnswer];
+            const buttonStyle = index === 0
+                ? [styles.answerButton, styles.leftAnswer]
+                : [styles.answerButton, styles.rightAnswer];
+
             return (
-                <TouchableOpacity onPress={() => console.log(answer.text)} key={answer._id}>
+                <TouchableOpacity onPress={() => {}} key={answer._id}>
                     <View style={buttonStyle}>
                         <Text style={styles.answerButtonText}>{answer.text}</Text>
                     </View>
@@ -85,13 +84,13 @@ class RandomQuestion extends Component {
     }
 
     render() {
-        const {randomQuestionIsLoading} = this.props;
+        const {isLoading} = this.props;
         return (
             <View style={styles.container}>
-                <LoadingIndicator loading={randomQuestionIsLoading} size='large' color='#ffffff'>
+                <LoadingIndicator loading={isLoading} size="large" color="#ffffff">
                     {this.renderQuestion()}
                 </LoadingIndicator>
-                {this.renderModal()}
+                <AddQuestion />
             </View>
         );
     }
@@ -100,13 +99,13 @@ class RandomQuestion extends Component {
 RandomQuestion.propTypes = {
     onFetchRandomQuestion: PropTypes.func,
     randomQuestion: PropTypes.object,
-    randomQuestionIsLoading: PropTypes.bool,
+    isLoading: PropTypes.bool,
     onShowModal: PropTypes.func
 };
 
 const mapStateToProps = (state) => ({
     randomQuestion: getRandomQuestion(state),
-    randomQuestionIsLoading: randomQuestionIsLoading(state)
+    isLoading: randomQuestionIsLoading(state)
 });
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({

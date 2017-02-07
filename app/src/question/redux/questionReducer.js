@@ -7,7 +7,7 @@ const INITIAL_LOADING_STATE = {
 
 function loadingStatus(state = INITIAL_LOADING_STATE, action) {
     const {type} = action;
-    switch(type) {
+    switch (type) {
         case REQUEST_RANDOM_QUESTION:
             return {randomQuestionIsLoading: true};
         case RECEIVE_RANDOM_QUESTION:
@@ -19,7 +19,7 @@ function loadingStatus(state = INITIAL_LOADING_STATE, action) {
 
 function randomQuestionData(state = {}, action) {
     const {type, payload} = action;
-    switch(type) {
+    switch (type) {
         case RECEIVE_RANDOM_QUESTION:
             return payload;
         default:
