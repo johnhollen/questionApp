@@ -1,8 +1,14 @@
+import {delay} from 'redux-saga';
 import {fork, call, put, takeLatest, select} from 'redux-saga/effects';
 import isEmpty from 'lodash/isEmpty';
 import {REQUEST_RANDOM_QUESTION, CREATE_QUESTION} from '../../actionConstants';
 import {fetchRandomQuestion, createQuestion} from '../../api/questionAPI';
-import {receiveRandomQuestion} from './questionActions';
+import {
+    receiveRandomQuestion,
+    postQuestion,
+    questionCreated,
+    clearUIState
+} from './questionActions';
 import {getUser} from '../../user/userSelectors';
 
 function* randomQuestionFetchFlow() {
@@ -33,15 +39,17 @@ function* createQuestionFlow(action) {
         }
     };
 
-    let response;
+    yield put(postQuestion());
     try {
-        response = yield call(createQuestion, requestBody);
+        yield call(createQuestion, requestBody); // TODO: Do something with the response
     } catch (error) {
         // TODO: error handling
         return;
     }
-    // TODO: Dispatch appropriate action
-    // yield put(...)
+
+    yield put(questionCreated());
+    yield call(delay, 2000);
+    yield put(clearUIState());
 }
 
 export default function* fetchQuestionSagas() {
