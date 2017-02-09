@@ -2,15 +2,7 @@ import {StyleSheet} from 'react-native';
 
 const navBarStyles = {
     navBar: {
-        backgroundColor: '#ffffff',
-        opacity: 0.9,
-        shadowColor: '#444',
-        shadowOpacity: 0.6,
-        shadowRadius: 3,
-        shadowOffset: {
-            height: 3,
-            width: 0
-        }
+        backgroundColor: '#ffffff'
     },
     navBarTitle: {
         fontWeight: 'bold',

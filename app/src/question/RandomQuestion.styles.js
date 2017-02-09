@@ -3,32 +3,39 @@ import {StyleSheet} from 'react-native';
 const randomQuestionStyles = {
     container: {
         flex: 1,
-        alignItems: 'center',
+        flexDirection: 'column',
+        alignItems: 'stretch',
+        justifyContent: 'space-around',
+        backgroundColor: '#e34373'
+    },
+    mainQuestionContainer: {
+        height: 170,
+        backgroundColor: '#cc325e',
         justifyContent: 'center',
-        backgroundColor: '#e34373',
-        padding: 15
+        borderBottomColor: 'white',
+        borderBottomWidth: 1
     },
     mainQuestion: {
-        color: '#ffffff',
+        color: 'white',
         fontFamily: 'System',
         fontWeight: 'bold',
-        fontSize: 30,
+        fontSize: 32,
         textAlign: 'center',
+        marginTop: 40,
+        padding: 5,
         textShadowColor: '#333',
         textShadowRadius: 7,
-        marginTop: 70,
         textShadowOffset: {
             width: 0,
             height: 1
-        },
-        padding: 5
+        }
     },
     separator: {
         height: 1,
-        backgroundColor: '#ffffff',
-        marginTop: 40,
-        marginBottom: 40,
-        shadowColor: '#ffffff',
+        backgroundColor: 'white',
+        marginLeft: 15,
+        marginRight: 15,
+        shadowColor: 'white',
         shadowOpacity: 1,
         shadowRadius: 3,
         shadowOffset: {
@@ -40,9 +47,14 @@ const randomQuestionStyles = {
         justifyContent: 'space-between',
         alignItems: 'stretch',
         flexDirection: 'column',
-        padding: 5,
-        height: 130,
-        marginBottom: 60
+        padding: 20,
+        height: 160,
+        marginRight: 15,
+        marginLeft: 15,
+        backgroundColor: '#cc325e',
+        borderRadius: 4,
+        borderColor: 'white',
+        borderWidth: 1
     },
     answerButton: {
         borderColor: '#ffffff',

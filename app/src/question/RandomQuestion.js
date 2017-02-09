@@ -72,8 +72,10 @@ class RandomQuestion extends Component {
         });
 
         return (
-            <View>
-                <Text style={styles.mainQuestion}>{questionText}</Text>
+            <View style={styles.container}>
+                <View style={styles.mainQuestionContainer}>
+                    <Text style={styles.mainQuestion}>{questionText}</Text>
+                </View>
                 <View style={styles.separator} />
                 <View style={styles.answerContainer}>
                     {answers}
