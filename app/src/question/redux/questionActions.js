@@ -5,7 +5,9 @@ import {
     CREATE_QUESTION,
     QUESTION_POSTED,
     QUESTION_CREATED,
-    CLEAR_UI_STATE
+    CLEAR_UI_STATE,
+    REQUEST_MY_QUESTIONS,
+    RECEIVE_MY_QUESTIONS
 } from '../../actionConstants';
 
 export const fetchRandomQuestion = () => ({
@@ -14,6 +16,15 @@ export const fetchRandomQuestion = () => ({
 
 export const receiveRandomQuestion = (data) => ({
     type: RECEIVE_RANDOM_QUESTION,
+    payload: data
+});
+
+export const fetchMyQuestions = () => ({
+    type: REQUEST_MY_QUESTIONS
+});
+
+export const receiveMyQuestions = (data) => ({
+    type: RECEIVE_MY_QUESTIONS,
     payload: data
 });
 
