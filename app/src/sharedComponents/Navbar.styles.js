@@ -2,13 +2,20 @@ import {StyleSheet} from 'react-native';
 
 const navBarStyles = {
     navBar: {
-        backgroundColor: '#ffffff'
+        backgroundColor: '#373832',
+        shadowColor: '#222222',
+        shadowOffset: {
+            height: 2,
+            width: 0
+        },
+        shadowOpacity: 0.6,
+        shadowRadius: 3
     },
     navBarTitle: {
         fontWeight: 'bold',
         fontSize: 20,
         marginTop: 5,
-        color: '#444444',
+        color: 'white',
         fontFamily: 'System'
     },
     navBarButtonText: {
@@ -16,11 +23,11 @@ const navBarStyles = {
         fontWeight: 'bold',
         fontFamily: 'System',
         marginBottom: 3,
-        color: '#444444'
+        color: 'white'
     },
     navBarButton: {
         borderRadius: 100,
-        backgroundColor: '#f5f5f5',
+        backgroundColor: '#555555',
         marginLeft: 15,
         marginRight: 15,
         marginTop: 2,
@@ -31,7 +38,7 @@ const navBarStyles = {
         paddingLeft: 12,
         paddingRight: 12,
         borderStyle: 'solid',
-        borderColor: '#eeeeee',
+        borderColor: '#999999',
         borderWidth: 1
     }
 };

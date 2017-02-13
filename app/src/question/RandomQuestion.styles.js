@@ -8,12 +8,19 @@ const randomQuestionStyles = {
         justifyContent: 'space-around',
         backgroundColor: '#e34373'
     },
-    mainQuestionContainer: {
-        height: 170,
+    questionContainer: {
+        justifyContent: 'space-between',
+        alignItems: 'stretch',
+        flexDirection: 'column',
+        padding: 20,
+        paddingTop: 40,
+        marginTop: 70,
+        marginRight: 15,
+        marginLeft: 15,
         backgroundColor: '#cc325e',
-        justifyContent: 'center',
-        borderBottomColor: 'white',
-        borderBottomWidth: 1
+        borderRadius: 4,
+        borderColor: 'white',
+        borderWidth: 1
     },
     mainQuestion: {
         color: 'white',
@@ -21,7 +28,6 @@ const randomQuestionStyles = {
         fontWeight: 'bold',
         fontSize: 32,
         textAlign: 'center',
-        marginTop: 40,
         padding: 5,
         textShadowColor: '#333',
         textShadowRadius: 7,
@@ -38,23 +44,12 @@ const randomQuestionStyles = {
         shadowColor: 'white',
         shadowOpacity: 1,
         shadowRadius: 3,
+        marginTop: 40,
+        marginBottom: 40,
         shadowOffset: {
             width: 0,
             height: 0
         }
-    },
-    answerContainer: {
-        justifyContent: 'space-between',
-        alignItems: 'stretch',
-        flexDirection: 'column',
-        padding: 20,
-        height: 160,
-        marginRight: 15,
-        marginLeft: 15,
-        backgroundColor: '#cc325e',
-        borderRadius: 4,
-        borderColor: 'white',
-        borderWidth: 1
     },
     answerButton: {
         borderColor: '#ffffff',
@@ -62,6 +57,7 @@ const randomQuestionStyles = {
         borderRadius: 4,
         padding: 10,
         shadowColor: '#333',
+        marginBottom: 20,
         shadowOpacity: 0.7,
         shadowRadius: 3,
         shadowOffset: {

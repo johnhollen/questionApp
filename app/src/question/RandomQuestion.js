@@ -73,11 +73,9 @@ class RandomQuestion extends Component {
 
         return (
             <View style={styles.container}>
-                <View style={styles.mainQuestionContainer}>
+                <View style={styles.questionContainer}>
                     <Text style={styles.mainQuestion}>{questionText}</Text>
-                </View>
-                <View style={styles.separator} />
-                <View style={styles.answerContainer}>
+                    <View style={styles.separator} />
                     {answers}
                 </View>
                 <AddButton onPress={this.showModal} />
