@@ -77,7 +77,6 @@ class MyQuestions extends Component {
                         dataSource={this.dataSource.cloneWithRows(myQuestions)}
                         renderRow={this.renderRow}
                         removeClippedSubviews={false}
-                        pageHeight={2000}
                     />
                 </LoadingIndicator>
             </View>
