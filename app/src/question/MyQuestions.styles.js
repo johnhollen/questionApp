@@ -35,7 +35,7 @@ const myQuestionStyles = {
         fontSize: 17,
         textAlign: 'center',
         textShadowColor: '#333',
-        textShadowRadius: 7,
+        textShadowRadius: 3,
         textShadowOffset: {
             width: 0,
             height: 1
