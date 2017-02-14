@@ -3,7 +3,6 @@ import {StyleSheet} from 'react-native';
 const randomQuestionStyles = {
     container: {
         flex: 1,
-        flexDirection: 'column',
         alignItems: 'stretch',
         justifyContent: 'space-around',
         backgroundColor: '#e34373'
@@ -11,7 +10,6 @@ const randomQuestionStyles = {
     questionContainer: {
         justifyContent: 'space-between',
         alignItems: 'stretch',
-        flexDirection: 'column',
         padding: 20,
         paddingTop: 40,
         marginTop: 70,
@@ -20,7 +18,14 @@ const randomQuestionStyles = {
         backgroundColor: '#cc325e',
         borderRadius: 4,
         borderColor: 'white',
-        borderWidth: 1
+        borderWidth: 1,
+        shadowColor: '#333',
+        shadowOpacity: 0.7,
+        shadowRadius: 3,
+        shadowOffset: {
+            width: 0,
+            height: 0
+        }
     },
     mainQuestion: {
         color: 'white',
@@ -85,7 +90,6 @@ const randomQuestionStyles = {
         width: 70,
         padding: 10,
         alignSelf: 'center',
-        flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
         borderColor: '#ffffff',

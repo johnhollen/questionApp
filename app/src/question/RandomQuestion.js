@@ -18,6 +18,11 @@ import {
 import styles from './RandomQuestion.styles';
 import AddQuestion from './AddQuestion';
 
+export const formatQuestion = (question) => {
+    if (endsWith(question, '?')) return question;
+    return `${question}?`;
+};
+
 const AddButton = ({onPress}) => (
     <TouchableOpacity onPress={onPress} style={styles.addButton}>
         <View>
@@ -56,7 +61,7 @@ class RandomQuestion extends Component {
             );
         }
 
-        const questionText = endsWith(randomQuestion.text, '?') ? randomQuestion.text : `${randomQuestion.text}?`;
+        const questionText = formatQuestion(randomQuestion.text);
         const answers = map(randomQuestion.options, (answer, index) => {
             const buttonStyle = index === 0
                 ? [styles.answerButton, styles.leftAnswer]

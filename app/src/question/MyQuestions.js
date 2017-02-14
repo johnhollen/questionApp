@@ -7,21 +7,34 @@ import {
 } from 'react-native';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
+import truncate from 'lodash/truncate';
 import LoadingIndicator from '../sharedComponents/LoadingIndicator';
 import {myQuestionsAreLoading, getMyQuestions} from './redux/questionSelectors';
 import {fetchMyQuestions} from './redux/questionActions';
+import {formatQuestion} from './RandomQuestion';
 import styles from './MyQuestions.styles';
 
-const QuestionListItem = ({question}) => (
-    <TouchableOpacity onPress={() => {}}>
-        <View style={styles.listItem}>
-            <Text style={styles.listItemText}>{question.text}</Text>
-        </View>
-    </TouchableOpacity>
-);
+const QuestionListItem = ({question, onClick}) => {
+    const {options} = question;
+    const sumOfAnswers = options[0].counter + options[1].counter;
+    const text = truncate(question.text, {
+        length: 20,
+        omission: '...?'
+    });
+
+    return (
+        <TouchableOpacity onPress={() => onClick(question)}>
+            <View style={styles.listItem}>
+                <Text style={styles.listItemText}>{formatQuestion(text)}</Text>
+                <Text style={styles.listItemText}>{sumOfAnswers} svar</Text>
+            </View>
+        </TouchableOpacity>
+    );
+};
 
 QuestionListItem.propTypes = {
-    question: PropTypes.object
+    question: PropTypes.object,
+    onClick: PropTypes.func
 };
 
 class MyQuestions extends Component {
@@ -30,6 +43,8 @@ class MyQuestions extends Component {
         this.dataSource = new ListView.DataSource({
             rowHasChanged: (row, nextRow) => row !== nextRow
         });
+        this.handleQuestionClick = this.handleQuestionClick.bind(this);
+        this.renderRow = this.renderRow.bind(this);
     }
 
     componentWillMount() {
@@ -37,11 +52,16 @@ class MyQuestions extends Component {
         onFetchMyQuestions();
     }
 
+    handleQuestionClick(question) {
+        console.log(question);
+    }
+
     renderRow(question) {
         return (
             <QuestionListItem
                 key={question._id}
                 question={question}
+                onClick={this.handleQuestionClick}
             />
         );
     }
@@ -57,6 +77,7 @@ class MyQuestions extends Component {
                         dataSource={this.dataSource.cloneWithRows(myQuestions)}
                         renderRow={this.renderRow}
                         removeClippedSubviews={false}
+                        pageHeight={2000}
                     />
                 </LoadingIndicator>
             </View>
