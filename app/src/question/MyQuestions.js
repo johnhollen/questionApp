@@ -22,6 +22,8 @@ const QuestionListItem = ({question, onClick}) => {
         omission: '...?'
     });
 
+    console.log("Tjena");
+
     return (
         <TouchableOpacity onPress={() => onClick(question)}>
             <View style={styles.listItem}>
