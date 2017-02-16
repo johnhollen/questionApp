@@ -23,6 +23,7 @@ const QuestionListItem = ({question, onClick}) => {
     });
 
     console.log("Tjena");
+    console.log("hej");
 
     return (
         <TouchableOpacity onPress={() => onClick(question)}>
