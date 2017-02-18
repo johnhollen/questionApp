@@ -18,7 +18,7 @@ const MyQuestionDetailedStyles = {
             width: 0,
             height: 0
         },
-        height: 500
+        height: 450
     },
     questionText: {
         color: 'white',

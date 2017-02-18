@@ -5,11 +5,18 @@ import {
     Modal,
     TouchableOpacity
 } from 'react-native';
+import map from 'lodash/map';
 import {formatQuestion} from './RandomQuestion';
+import BarChart from '../sharedComponents/BarChart';
 import styles from './MyQuestionDetailed.styles';
 
 const MyQuestionDetailed = ({visible, onDismiss, question}) => {
     const shouldRenderContent = question !== null;
+
+    const barChartData = shouldRenderContent ? map(question.options, (option) => ({
+        label: option.text,
+        count: option.counter
+    })) : [];
 
     return (
         <Modal
@@ -21,6 +28,7 @@ const MyQuestionDetailed = ({visible, onDismiss, question}) => {
                 shouldRenderContent ? (
                     <View style={styles.container}>
                         <Text style={styles.questionText}>{formatQuestion(question.text)}</Text>
+                        <BarChart data={barChartData} />
                         <TouchableOpacity onPress={onDismiss}>
                             <View style={styles.closeButton}>
                                 <Text style={styles.closeButtonText}>Stäng</Text>
