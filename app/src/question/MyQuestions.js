@@ -12,6 +12,7 @@ import LoadingIndicator from '../sharedComponents/LoadingIndicator';
 import {myQuestionsAreLoading, getMyQuestions} from './redux/questionSelectors';
 import {fetchMyQuestions} from './redux/questionActions';
 import {formatQuestion} from './RandomQuestion';
+import MyQuestionDetailed from './MyQuestionDetailed';
 import styles from './MyQuestions.styles';
 
 const QuestionListItem = ({question, onClick}) => {
@@ -40,10 +41,16 @@ QuestionListItem.propTypes = {
 class MyQuestions extends Component {
     constructor(props) {
         super(props);
+
+        this.state = {
+            showDetailed: false,
+            activeQuestion: null
+        };
         this.dataSource = new ListView.DataSource({
             rowHasChanged: (row, nextRow) => row !== nextRow
         });
         this.handleQuestionClick = this.handleQuestionClick.bind(this);
+        this.handleCloseModal = this.handleCloseModal.bind(this);
         this.renderRow = this.renderRow.bind(this);
     }
 
@@ -53,7 +60,17 @@ class MyQuestions extends Component {
     }
 
     handleQuestionClick(question) {
-        console.log(question);
+        this.setState({
+            showDetailed: true,
+            activeQuestion: question
+        });
+    }
+
+    handleCloseModal() {
+        this.setState({
+            showDetailed: false,
+            activeQuestion: null
+        });
     }
 
     renderRow(question) {
@@ -68,6 +85,7 @@ class MyQuestions extends Component {
 
     render() {
         const {isLoading, myQuestions} = this.props;
+        const {activeQuestion, showDetailed} = this.state;
 
         return (
             <View style={styles.container}>
@@ -79,6 +97,11 @@ class MyQuestions extends Component {
                         removeClippedSubviews={false}
                     />
                 </LoadingIndicator>
+                <MyQuestionDetailed
+                    visible={showDetailed}
+                    question={activeQuestion}
+                    onDismiss={this.handleCloseModal}
+                />
             </View>
         );
     }
