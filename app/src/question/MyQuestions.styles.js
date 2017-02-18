@@ -3,12 +3,13 @@ import {StyleSheet} from 'react-native';
 const myQuestionStyles = {
     container: {
         flex: 1,
-        backgroundColor: 'mediumspringgreen'
+        backgroundColor: '#00d979',
+        justifyContent: 'center'
     },
     myQuestionList: {
         marginTop: 70,
-        marginRight: 15,
-        marginLeft: 15
+        marginRight: 10,
+        marginLeft: 10
     },
     listItem: {
         flexDirection: 'row',
