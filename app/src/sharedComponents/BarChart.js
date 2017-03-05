@@ -19,7 +19,7 @@ class Bar extends Component {
         const {width} = this.props;
 
         Animated.timing(this.widthAnimation, {
-            toValue: width,
+            toValue: width < 4 ? 0 : width - 4,
             delay: 500,
             duration: 500
         }).start();
@@ -70,7 +70,7 @@ class BarChart extends Component {
             return (
                 <View style={styles.barContainer} key={`bar_index_${index}`}>
                     <Text style={styles.label}>{entry.label}: {percentageToPresent}%</Text>
-                    <View style={styles.barBackground}>
+                    <View style={[styles.barBackground, {width: containerWidth}]}>
                         <Bar width={widthOfBar} color={entry.color} />
                     </View>
                 </View>
@@ -80,7 +80,7 @@ class BarChart extends Component {
 
     render() {
         return (
-            <View style={styles.container} onLayout={this.onLayout}>
+            <View onLayout={this.onLayout}>
                 {this.renderBars()}
             </View>
         );

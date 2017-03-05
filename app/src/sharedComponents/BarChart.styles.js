@@ -1,9 +1,6 @@
 import {StyleSheet} from 'react-native';
 
 const BarChartStyles = {
-    container: {
-        padding: 2
-    },
     barContainer: {
         marginTop: 15,
         marginBottom: 15
