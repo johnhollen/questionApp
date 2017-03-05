@@ -7,18 +7,14 @@ const inputStyles = {
         fontWeight: 'bold',
         fontSize: 18,
         flex: 1,
-        color: '#ffffff',
+        color: '#555555',
         paddingTop: 3
     },
     wrapper: {
         flexDirection: 'row',
         margin: 10,
-        borderColor: '#ffffff',
-        borderWidth: 1,
-        borderRadius: 4,
-        paddingRight: 10,
-        paddingLeft: 10,
-        backgroundColor: 'rgba(255, 255, 255, 0.08)'
+        borderColor: '#999999',
+        borderBottomWidth: 1
     }
 };
 

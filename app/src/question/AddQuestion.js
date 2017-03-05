@@ -61,6 +61,7 @@ class AddQuestion extends Component {
             firstAnswer: '',
             secondAnswer: ''
         };
+
         this.onDismiss = this.onDismiss.bind(this);
         this.handleQuestionTextChange = this.handleQuestionTextChange.bind(this);
         this.handleFirstAnswerTextChange = this.handleFirstAnswerTextChange.bind(this);
@@ -129,7 +130,7 @@ class AddQuestion extends Component {
             case LOADING:
                 return (
                     <View style={styles.container}>
-                        <LoadingIndicator loading={true} color="#ffffff" size="large" />
+                        <LoadingIndicator loading={true} color="deepskyblue" size="large" />
                     </View>
                 );
             case CREATED:
