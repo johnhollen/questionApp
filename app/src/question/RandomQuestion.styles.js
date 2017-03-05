@@ -15,11 +15,11 @@ const randomQuestionStyles = {
         marginTop: 70,
         marginRight: 10,
         marginLeft: 10,
-        backgroundColor: '#fff',
+        backgroundColor: '#ffffff',
         borderRadius: 4
     },
     mainQuestion: {
-        color: '#555',
+        color: '#555555',
         fontFamily: 'System',
         fontWeight: 'bold',
         fontSize: 32,
@@ -28,7 +28,7 @@ const randomQuestionStyles = {
     },
     separator: {
         height: 1,
-        backgroundColor: '#555',
+        backgroundColor: '#555555',
         marginLeft: 15,
         marginRight: 15,
         marginTop: 40,

@@ -3,7 +3,7 @@ import {StyleSheet} from 'react-native';
 const myQuestionStyles = {
     container: {
         flex: 1,
-        backgroundColor: '#00d979',
+        backgroundColor: '#00a979',
         justifyContent: 'center'
     },
     myQuestionList: {
@@ -17,30 +17,15 @@ const myQuestionStyles = {
         marginTop: 5,
         marginBottom: 5,
         padding: 15,
-        borderWidth: 1,
-        borderColor: 'white',
         borderRadius: 4,
-        backgroundColor: 'teal',
-        shadowColor: '#333',
-        shadowOpacity: 0.7,
-        shadowRadius: 3,
-        shadowOffset: {
-            width: 0,
-            height: 0
-        }
+        backgroundColor: '#ffffff'
     },
     listItemText: {
         fontFamily: 'System',
         fontWeight: 'bold',
-        color: '#ffffff',
+        color: '#555555',
         fontSize: 17,
-        textAlign: 'center',
-        textShadowColor: '#333',
-        textShadowRadius: 3,
-        textShadowOffset: {
-            width: 0,
-            height: 1
-        }
+        textAlign: 'center'
     }
 };
 
