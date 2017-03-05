@@ -5,7 +5,7 @@ const randomQuestionStyles = {
         flex: 1,
         alignItems: 'stretch',
         justifyContent: 'space-around',
-        backgroundColor: '#e34373'
+        backgroundColor: '#e373a3'
     },
     questionContainer: {
         justifyContent: 'space-between',
@@ -15,60 +15,31 @@ const randomQuestionStyles = {
         marginTop: 70,
         marginRight: 10,
         marginLeft: 10,
-        backgroundColor: '#cc325e',
-        borderRadius: 4,
-        borderColor: 'white',
-        borderWidth: 1,
-        shadowColor: '#333',
-        shadowOpacity: 0.7,
-        shadowRadius: 3,
-        shadowOffset: {
-            width: 0,
-            height: 0
-        }
+        backgroundColor: '#fff',
+        borderRadius: 4
     },
     mainQuestion: {
-        color: 'white',
+        color: '#555',
         fontFamily: 'System',
         fontWeight: 'bold',
         fontSize: 32,
         textAlign: 'center',
-        padding: 5,
-        textShadowColor: '#333',
-        textShadowRadius: 7,
-        textShadowOffset: {
-            width: 0,
-            height: 1
-        }
+        padding: 5
     },
     separator: {
         height: 1,
-        backgroundColor: 'white',
+        backgroundColor: '#555',
         marginLeft: 15,
         marginRight: 15,
-        shadowColor: 'white',
-        shadowOpacity: 1,
-        shadowRadius: 3,
         marginTop: 40,
-        marginBottom: 40,
-        shadowOffset: {
-            width: 0,
-            height: 0
-        }
+        marginBottom: 40
     },
     answerButton: {
         borderColor: '#ffffff',
         borderWidth: 1,
         borderRadius: 4,
         padding: 10,
-        shadowColor: '#333',
-        marginBottom: 20,
-        shadowOpacity: 0.7,
-        shadowRadius: 3,
-        shadowOffset: {
-            width: 0,
-            height: 0
-        }
+        marginBottom: 20
     },
     answerButtonText: {
         fontFamily: 'System',
@@ -85,27 +56,18 @@ const randomQuestionStyles = {
     },
     addButton: {
         borderRadius: 100,
-        backgroundColor: 'deepskyblue',
+        backgroundColor: '#ffffff',
         height: 70,
         width: 70,
         padding: 10,
         alignSelf: 'center',
         justifyContent: 'center',
-        alignItems: 'center',
-        borderColor: '#ffffff',
-        borderWidth: 1,
-        shadowColor: '#333',
-        shadowOpacity: 0.7,
-        shadowRadius: 3,
-        shadowOffset: {
-            width: 0,
-            height: 0
-        }
+        alignItems: 'center'
     },
     addButtonText: {
         fontFamily: 'System',
         fontWeight: 'bold',
-        color: '#ffffff',
+        color: 'deepskyblue',
         fontSize: 40,
         textAlign: 'center',
         padding: 0,

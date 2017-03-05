@@ -2,7 +2,7 @@ import {StyleSheet} from 'react-native';
 
 const navBarStyles = {
     navBar: {
-        backgroundColor: '#f5f5f5',
+        backgroundColor: '#fff',
         shadowColor: '#222222',
         shadowOffset: {
             height: 2,
@@ -27,7 +27,7 @@ const navBarStyles = {
     },
     navBarButton: {
         borderRadius: 100,
-        backgroundColor: 'white',
+        backgroundColor: '#f5f5f5',
         marginLeft: 15,
         marginRight: 15,
         marginTop: 2,
