@@ -23,7 +23,7 @@ class Input extends Component {
                     onChangeText={this.handleInputChange}
                     keyboardAppearance={appearance}
                     returnKeyType="default"
-                    placeholderTextColor="#f3f3f3"
+                    placeholderTextColor="#999999"
                     multiline={true}
                 />
             </View>

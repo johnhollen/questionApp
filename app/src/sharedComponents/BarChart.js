@@ -36,7 +36,9 @@ class BarChart extends Component {
             return (
                 <View style={styles.barContainer} key={`bar_index_${index}`}>
                     <Text style={styles.label}>{entry.label}: {percentageToPresent}%</Text>
-                    <View style={[styles.bar, {width: widthOfBar}]} />
+                    <View style={styles.barBackground}>
+                        <View style={[styles.bar, {width: widthOfBar, backgroundColor: entry.color}]} />
+                    </View>
                 </View>
             );
         });

@@ -2,36 +2,29 @@ import {StyleSheet} from 'react-native';
 
 const BarChartStyles = {
     container: {
-        padding: 10
+        padding: 2
     },
     barContainer: {
-        marginTop: 10,
-        marginBottom: 10
+        marginTop: 15,
+        marginBottom: 15
     },
     label: {
-        color: 'white',
+        color: '#555555',
         fontFamily: 'System',
         fontWeight: 'bold',
-        fontSize: 20,
-        textShadowColor: '#333',
-        textShadowRadius: 4,
-        textShadowOffset: {
-            width: 0,
-            height: 1
-        }
+        fontSize: 20
+    },
+    barBackground: {
+        height: 24,
+        marginTop: 10,
+        backgroundColor: '#f0f0f0',
+        borderRadius: 20,
+        padding: 2
     },
     bar: {
         height: 20,
-        marginTop: 10,
-        backgroundColor: 'white',
-        borderRadius: 20,
-        shadowColor: '#333',
-        shadowRadius: 4,
-        shadowOpacity: 0.7,
-        shadowOffset: {
-            width: 0,
-            height: 1
-        }
+        backgroundColor: 'green',
+        borderRadius: 20
     }
 };
 
