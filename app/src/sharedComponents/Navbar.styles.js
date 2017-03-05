@@ -36,10 +36,7 @@ const navBarStyles = {
         paddingTop: 5,
         paddingBottom: 5,
         paddingLeft: 12,
-        paddingRight: 12,
-        borderStyle: 'solid',
-        borderColor: '#999999',
-        borderWidth: 1
+        paddingRight: 12
     }
 };
 

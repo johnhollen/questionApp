@@ -13,9 +13,12 @@ import styles from './MyQuestionDetailed.styles';
 const MyQuestionDetailed = ({visible, onDismiss, question}) => {
     const shouldRenderContent = question !== null;
 
-    const barChartData = shouldRenderContent ? map(question.options, (option) => ({
+    const colors = ['mediumslateblue', 'mediumseagreen'];
+
+    const barChartData = shouldRenderContent ? map(question.options, (option, index) => ({
         label: option.text,
-        count: option.counter
+        count: option.counter,
+        color: colors[index]
     })) : [];
 
     return (
